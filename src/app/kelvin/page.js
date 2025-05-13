@@ -1,9 +1,12 @@
-import Buton from "@/components/butonComponent";
+import Footer from "@/components/footer"; 
 
 const KelvinPage = () => {
   return (
-    <div>
-      <Buton a={"Perfil Admin"} />
+    <div className="flex flex-col min-h-screen justify-between">
+      <div className="p-6">
+        {/* wazaa*/}
+      </div>
+      <Footer />
     </div>
   );
 };
