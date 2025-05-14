@@ -5,9 +5,9 @@ import {ButtonHome, ButtonLogOut} from "@/components/butonComponent";
 const AndrewPage = () => {
   return (
     <div>
-      <ButtonProfile a={"Perfil Usuario"} />
-      <ButtonHome b={"Mis propiedades"} />
-      <ButtonLogOut c={"Cerrar Sesión"} />
+      <ButtonProfile a={"PERFIL"} />
+      <ButtonHome b={"MIS PROPIEDADES"} />
+      <ButtonLogOut c={"CERRAR SESIÓN"} />
     </div>
   );
 };
