@@ -6,6 +6,7 @@ export default function Home() {
       <Link href="/andrew">Andrew</Link>
       <Link href="/kelvin">Kelvin</Link>
       <Link href="/joshua">Joshua</Link>
+      <Link href="/gabriel">Gabriel</Link>
     </div>
   );
 }
