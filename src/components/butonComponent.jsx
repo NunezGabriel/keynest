@@ -1,4 +1,4 @@
-import { IoLogOutOutline } from "react-icons/io5";
+/* import { IoLogOutOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
@@ -13,7 +13,7 @@ import { RiUploadLine } from "react-icons/ri";
 const ButtonLogOut = ({ a }) => {
   return (
     <div>
-      <button className="bg-[#FFFFFF] border-[1px] hover:border-[#16b4ff] border-[#1290CB] gap-3 text-[#1290CB] hover:text-[#16b4ff] flex font-bold justify-center items-center py-2 px-4 rounded-2xl">
+      <button className="bg-[#FFFFFF] border-[1px] hover:border-[#16b4ff] border-[#1290CB] gap-3 text-[#1290CB] font-normal text-base hover:text-[#16b4ff] flex justify-center items-center py-2 px-4 rounded-2xl">
         <IoLogOutOutline size={20}  />
         {a}
       </button>
@@ -24,7 +24,7 @@ const ButtonLogOut = ({ a }) => {
 const ButtonProfile = ({ b }) => {
   return (
     <div>
-      <button className="bg-[#1290CB] hover:bg-[#16b4ff] gap-3 text-white flex justify-center items-center font-bold py-2 px-4 rounded-2xl">
+      <button className="bg-[#1290CB] hover:bg-[#16b4ff] gap-3 text-white flex justify-center items-center font-normal text-base py-2 px-4 rounded-2xl">
         <FaUserAlt size={20} color="#ffffff" />
         {b}
       </button>
@@ -36,7 +36,7 @@ const ButtonProfile = ({ b }) => {
 const ButtonStart = ({ c }) => {
   return (
     <div>
-      <button className="bg-[#1290CB] hover:bg-[#16b4ff] gap-3 text-white flex font-bold py-2 px-4 rounded-2xl">
+      <button className="bg-[#1290CB] hover:bg-[#16b4ff] gap-3 text-white flex font-normal text-xl py-2 px-4 rounded-2xl">
         {c}
       </button>
     </div>
@@ -277,3 +277,4 @@ const ButtonPublishProperty = ({ y }) => {
 
 export {ButtonLogOut, ButtonStart, ButtonSearch, ButtonAdd, ButtonEdit, ButtonDelete, ButtonSearch2, ButtonJoin, ButtonLogIn, ButtonCreateAccount, ButtonMyProperties, ButtonSave, ButtonAccept, ButtonCreateAccount2, ButtonPrice, ButtonPropertyType, ButtonRoomBath, ButtonPlus, ButtonContactAdvertiser, ButtonAddFavourites, ButtonEditProperty, ButtonRegisterNP, ButtonUpload, ButtonPublishProperty};
 export default ButtonProfile;
+ */

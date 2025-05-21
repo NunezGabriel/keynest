@@ -1,4 +1,60 @@
-import ButtonProfile from "@/components/butonComponent";
+"use client";
+import React from "react";
+import { IoLogOutOutline } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import UniversalButton from "@/components/UniversalButton";
+
+const Page = () => {
+  return (
+    <div className="flex flex-col md:flex-row justify-between gap-4 mt-4 w-full">
+      <UniversalButton
+        text="CERRAR SESIÓN"
+        icon={IoLogOutOutline}
+        color="secondary"
+        size="base"
+      />
+      <UniversalButton
+        text="PERFIL"
+        icon={FaUserAlt}
+        color="primary"
+        size="base"
+      />
+      <UniversalButton
+        text="AGREGAR"
+        icon={IoMdAdd}
+        color="primary"
+        size="base"
+        iconPosition="right"
+      />
+
+      <UniversalButton
+        text="EDITAR"
+        color="primary"
+        size="base"
+      />
+      
+    </div>
+  );
+};
+
+export default Page;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import ButtonProfile from "@/components/butonComponent";
 import {ButtonLogOut, ButtonStart, ButtonSearch, ButtonAdd, ButtonEdit, ButtonDelete, ButtonSearch2, ButtonJoin, ButtonLogIn, ButtonCreateAccount, ButtonMyProperties, ButtonSave, ButtonAccept, ButtonCreateAccount2, ButtonPrice, ButtonPropertyType, ButtonRoomBath, ButtonPlus, ButtonContactAdvertiser, ButtonAddFavourites, ButtonEditProperty, ButtonRegisterNP, ButtonUpload, ButtonPublishProperty } from "@/components/butonComponent";
 
 
@@ -40,3 +96,4 @@ const AndrewPage = () => {
 
 
 export default AndrewPage;
+ */
