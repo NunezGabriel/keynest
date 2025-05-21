@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-8 px-4 mt-10">
+    <footer className="bg-gray-100 text-gray-700 py-8 px-4 mt-10 fixed bottom-0 w-full">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
         {/* Columna 1 - Título */}
         <div>
@@ -40,7 +40,9 @@ const Footer = () => {
 
         {/* Columna 3 - Source code */}
         <div>
-          <p className="mb-2 font-medium text-center md:text-left">Source code:</p>
+          <p className="mb-2 font-medium text-center md:text-left">
+            Source code:
+          </p>
           <div className="grid grid-cols-2 gap-4 justify-items-start">
             <div className="flex items-center gap-2">
               <SiLaravel className="text-red-600" />
