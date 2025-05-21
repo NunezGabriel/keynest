@@ -2,3 +2,25 @@
 body {
   background-color: #f2f0f0;
 }
+
+.mainImage {
+  width: 100%;
+  height: 600px;
+  position: relative;
+
+  background-image: url("../../public/mainImage.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .mainImage {
+    height: 400px;
+  }
+}
