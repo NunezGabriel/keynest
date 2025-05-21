@@ -7,6 +7,7 @@ export default function Home() {
       <Link href="/kelvin">Kelvin</Link>
       <Link href="/joshua">Joshua</Link>
       <Link href="/gabriel">Gabriel</Link>
+      <Link href="/therealone">The app</Link>
     </div>
   );
 }
