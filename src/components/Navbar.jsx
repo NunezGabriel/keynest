@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AiFillHome } from "react-icons/ai";
+import { PiHouseFill } from "react-icons/pi";
 import { FaSearch, FaUser, FaBars } from "react-icons/fa";
 
 export default function Navbar() {
@@ -7,15 +7,14 @@ export default function Navbar() {
     <nav className="bg-white shadow-md w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
-            <AiFillHome className="text-blue-600 w-6 h-6" />
-            <span className="text-xl font-bold text-blue-600">KEYNEST</span>
+            <PiHouseFill className="text-[#1290CB] w-6 h-6" />
+            <span className="text-xl font-bold text-[#1290CB]">KEYNEST</span>
           </div>
-          
+
           {/* Menú principal */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-10">
             {/* Buscar Casa */}
             <Link
               href="/buscar-casa"
@@ -28,7 +27,7 @@ export default function Navbar() {
             {/* Unirse */}
             <Link
               href="/unirse"
-              className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="flex items-center gap-2 bg-[#1290CB] hover:bg-sky-600 text-white px-3 py-2 rounded-2xl text-sm font-medium"
             >
               <FaUser />
               UNIRSE
@@ -37,7 +36,7 @@ export default function Navbar() {
             {/* Iniciar Sesión */}
             <Link
               href="/iniciar-sesion"
-              className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="flex items-center gap-2 bg-[#1290CB] hover:bg-sky-600 text-white px-3 py-2 rounded-2xl text-sm font-medium"
             >
               <FaUser />
               INICIAR SESIÓN
