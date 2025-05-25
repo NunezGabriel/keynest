@@ -27,7 +27,7 @@ const Footer = () => {
             Build with <FaHeart className="inline text-blue-500" /> by:
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {["Gabriel Nunez", "Joshua Salazar", "Anthony Alca", "Kelvin"].map(
+            {["Gabriel Nunez", "Joshua Salazar", "Andrew Alca", "Kelvin Pinto"].map(
               (name, i) => (
                 <div key={i} className="flex items-center gap-1">
                   <FaGithub />
