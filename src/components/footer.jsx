@@ -1,21 +1,21 @@
 import { FaGithub, FaHeart } from "react-icons/fa";
-import { AiFillHome } from "react-icons/ai";
 import {
   SiLaravel,
   SiMongodb,
   SiNextdotjs,
   SiTailwindcss,
 } from "react-icons/si";
+import { PiHouseFill } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-8 px-4 w-full">
+    <footer className="bg-gray-100 text-gray-700 py-8 px-4 w-full border-t border-[#1290CB]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
         {/* Columna 1 - Título */}
         <div>
-          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-            <AiFillHome size={28} className="text-blue-500" />
-            <h1 className="text-xl font-bold text-blue-600">KEYNEST</h1>
+          <div className="flex-shrink-0 flex items-center gap-2">
+            <PiHouseFill className="text-[#1290CB] w-6 h-6" />
+            <span className="text-xl font-bold text-[#1290CB]">KEYNEST</span>
           </div>
           <p>© 2025 - KeyNest</p>
           <p>Tecsup - C24 - Tercer Semestre</p>
