@@ -5,28 +5,28 @@ const teamMembers = [
   {
     name: "Gabriel",
     role: "Dev",
-    img: "/team/prueba.png",
+    img: "/team/Character-Po.avif",
     linkedin: "...",
     github: "...",
   },
   {
     name: "Andrew",
     role: "Dev",
-    img: "/team/prueba.png",
+    img: "/team/Character-Tinky-Winky.avif",
     linkedin: "...",
     github: "...",
   },
   {
     name: "Kelvin",
     role: "Frontend",
-    img: "/team/prueba.png",
+    img: "/team/Character-Dipsy.avif",
     linkedin: "...",
     github: "...",
   },
   {
     name: "Joshua",
     role: "Frontend",
-    img: "/team/prueba.png",
+    img: "/team/Character-Laa-Laa.avif",
     linkedin: "...",
     github: "...",
   },
@@ -36,9 +36,9 @@ const TeamSection = () => {
   return (
     <section className="bg-white py-12">
       <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-light uppercase tracking-widest mb-10 text-[#0093d1]">
-                Conoce al equipo
-            </h2>
+        <h2 className="text-3xl font-light uppercase tracking-widest mb-10 text-[#0093d1]">
+          Conoce al equipo
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
             <div key={index} className="flex flex-col items-center">
@@ -56,10 +56,18 @@ const TeamSection = () => {
               </h3>
               <p className="text-sm text-gray-500 mb-2">{member.role}</p>
               <div className="flex gap-4 text-gray-500 text-xl">
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaLinkedin className="hover:text-gray-700 transition" />
                 </a>
-                <a href={member.github} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaGithub className="hover:text-gray-700 transition" />
                 </a>
               </div>

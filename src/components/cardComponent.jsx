@@ -12,7 +12,7 @@ import { PiPawPrint } from "react-icons/pi";
 
 const CardComponent = ({ estado }) => {
   return (
-    <div className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden">
+    <div className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg">
       <section className="relative">
         <Image
           alt="imagen de la propiedad"
