@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
