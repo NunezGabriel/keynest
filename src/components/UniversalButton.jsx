@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import { ImSpinner2 } from "react-icons/im";
 
