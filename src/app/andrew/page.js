@@ -3,6 +3,65 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import UniversalButton from "@/components/UniversalButton";
+import DropdownButton from "@/components/DropdownButton";
+
+const Page = () => {
+  return (
+    <div className="flex flex-col md:flex-row gap-4 mt-4">
+      <UniversalButton
+        text="CERRAR SESIÓN"
+        icon={IoLogOutOutline}
+        color="secondary"
+        onClick={() => console.log("Cerrar sesión")}
+        responsive="hidden md:flex"
+      />
+
+      <UniversalButton
+        text="PERFIL"
+        icon={FaUserAlt}
+        color="primary"
+        onClick={() => console.log("Ir al perfil")}
+        responsive="hidden md:flex"
+      />
+
+      <UniversalButton
+        text="AGREGAR"
+        icon={IoMdAdd}
+        color="primary"
+        onClick={() => console.log("Agregar nueva propiedad")}
+        responsive="hidden md:flex"
+      />
+
+      <DropdownButton
+        text="MÁS"
+        options={[
+          {
+            label: "Con jardín",
+            onClick: () => console.log("Filtrar jardín"),
+          },
+          {
+            label: "Con cochera",
+            onClick: () => console.log("Filtrar cochera"),
+          }
+        ]}
+      />
+    </div>
+  );
+};
+
+export default Page;
+
+
+
+
+
+
+/* "use client";
+import React from "react";
+import { IoLogOutOutline } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import UniversalButton from "@/components/UniversalButton";
 
 const Page = () => {
   return (
@@ -37,7 +96,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page; */
 
 
 
