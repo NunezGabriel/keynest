@@ -8,11 +8,13 @@ const LaandlordRegister = () => {
       {/* Contenedor del formulario posicionado fijo y centrado */}
       <div className="fixed inset-0 flex items-center justify-center z-10">
         <div className="bg-white rounded-lg shadow-md max-w-[388px] w-full p-4 mx-4">
-          <h2 className="text-2xl text-center">Create your Account</h2>
+          <h2 className="text-2xl text-center mb-4">Crea tu cuenta</h2>
 
           <form className="flex flex-col gap-2">
-            <div className="flex flex-col">
-              <label>NAME</label>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-[#373737] tracking-[1.5px]">
+                NAME
+              </label>
               <input
                 className="p-2 border border-[#1290cb] rounded-lg"
                 type="text"
@@ -22,8 +24,10 @@ const LaandlordRegister = () => {
               />
             </div>
 
-            <div className="flex flex-col">
-              <label>EMAIL</label>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-[#373737] tracking-[1.5px]">
+                EMAIL
+              </label>
               <input
                 className="p-2 border border-[#1290cb] rounded-lg"
                 type="email"
@@ -33,8 +37,10 @@ const LaandlordRegister = () => {
               />
             </div>
 
-            <div className="flex flex-col">
-              <label>PHONE</label>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-[#373737] tracking-[1.5px]">
+                PHONE
+              </label>
               <input
                 className="p-2 border border-[#1290cb] rounded-lg"
                 type="tel"
@@ -44,8 +50,10 @@ const LaandlordRegister = () => {
               />
             </div>
 
-            <div className="flex flex-col">
-              <label>PASSWORD</label>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-[#373737] tracking-[1.5px]">
+                PASSWORD
+              </label>
               <input
                 className="p-2 border border-[#1290cb] rounded-lg"
                 type="password"
@@ -53,11 +61,15 @@ const LaandlordRegister = () => {
                 name="password"
                 placeholder="******"
               />
-              <small className="helper-text">At least 6 characters</small>
+              <small className="helper-text text-gray-500">
+                Al menos 6 caracteres
+              </small>
             </div>
 
-            <div className="flex flex-col">
-              <label>PASSWORD CONFIRMATION</label>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-[#373737] tracking-[1.5px]">
+                PASSWORD CONFIRMATION
+              </label>
               <input
                 className="p-2 border border-[#1290cb] rounded-lg"
                 type="password"
@@ -67,7 +79,7 @@ const LaandlordRegister = () => {
               />
             </div>
             <div className="mx-auto mt-3">
-              <UniversalButton text={"CREATE ACCOUNT"} />
+              <UniversalButton text={"CREAR CUENTA"} />
             </div>
           </form>
         </div>
