@@ -1,6 +1,6 @@
 import UniversalButton from "@/components/UniversalButton";
 
-const LaandlordRegister = () => {
+const SeekerRegister = () => {
   return (
     <div className="relative">
       <div className="w-full h-[352px] bg-[#bad8e7] text-center py-16"></div>
@@ -88,4 +88,4 @@ const LaandlordRegister = () => {
   );
 };
 
-export default LaandlordRegister;
+export default SeekerRegister;
