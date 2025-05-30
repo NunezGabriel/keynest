@@ -76,4 +76,4 @@ const SeekerRegister = () => {
   );
 };
 
-export default LaandlordRegister;
+export default SeekerRegister;
