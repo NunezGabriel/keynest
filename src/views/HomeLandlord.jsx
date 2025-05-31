@@ -1,8 +1,9 @@
 import Image from "next/image";
 import CardComponent from "@/components/cardComponent";
 import TeamSection from "@/components/TeamSection";
+import UniversalButton from "@/components/UniversalButton";
 
-const HomeGuest = () => {
+const HomeLandlord = () => {
   return (
     <div className="">
       <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14">
@@ -23,9 +24,7 @@ const HomeGuest = () => {
           <p className="text-xl mb-6 text-[#7c7c7c]">
             La forma más sencilla de encontrar donde perteneces
           </p>
-          <button className="bg-[#1290CB] hover:bg-sky-600 text-white py-2 px-6 rounded-full">
-            Comencemos
-          </button>
+          <UniversalButton text={"Comencemos"} type="primary" />
         </div>
       </div>
       <div className="text-center mb-14">
@@ -47,9 +46,7 @@ const HomeGuest = () => {
           <h1 className="text-4xl text-[#373737] font-light tracking-[0.25px]">
             Conseguir que alguien alquile tu apartamento nunca ha sido tan fácil
           </h1>
-          <button className="bg-[#1290CB] hover:bg-sky-600 text-white py-2 px-6 rounded-full">
-            crea una cuenta ahora
-          </button>
+          <UniversalButton text={"REVISA TUS PROPIEDADES"} type="primary" />
         </div>
       </div>
       <TeamSection />
@@ -57,4 +54,4 @@ const HomeGuest = () => {
   );
 };
 
-export default HomeGuest;
+export default HomeLandlord;
