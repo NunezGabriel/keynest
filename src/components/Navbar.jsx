@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { PiHouseFill } from "react-icons/pi";
-import { FaSearch, FaUser, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+import UniversalButton from "./UniversalButton";
 
-export default function Navbar() {
+export default function Navbar({ type }) {
   return (
     <nav className="bg-white shadow-md w-full z-10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,31 +17,78 @@ export default function Navbar() {
           {/* Menú principal */}
           <div className="hidden md:flex items-center space-x-10">
             {/* Buscar Casa */}
-            <Link
-              href="/buscar-casa"
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 text-sm font-medium"
-            >
-              <FaSearch />
-              BUSCAR CASA
-            </Link>
 
-            {/* Unirse */}
-            <Link
-              href="/unirse"
-              className="flex items-center gap-2 bg-[#1290CB] hover:bg-sky-600 text-white px-3 py-2 rounded-2xl text-sm font-medium"
-            >
-              <FaUser />
-              UNIRSE
-            </Link>
+            <UniversalButton
+              text={"BUSCAR PROPIEDAD"}
+              color="ghost"
+              iconClassName="BUSCAR PROPIEDAD"
+              iconBackgroundStyle="text-black"
+              className="text-black"
+            />
 
-            {/* Iniciar Sesión */}
-            <Link
-              href="/iniciar-sesion"
-              className="flex items-center gap-2 bg-[#1290CB] hover:bg-sky-600 text-white px-3 py-2 rounded-2xl text-sm font-medium"
-            >
-              <FaUser />
-              INICIAR SESIÓN
-            </Link>
+            {type === "landlordLog" && (
+              <UniversalButton
+                text={"CERRAR SESION"}
+                color="secondary"
+                iconClassName="CERRAR SESION"
+              />
+            )}
+
+            {type === "landlordLog" && (
+              <UniversalButton
+                text={"MIS PROPIEDADES"}
+                color="primary"
+                iconClassName={"MIS PROPIEDADES"}
+              />
+            )}
+
+            {type === "landlordLog" && (
+              <UniversalButton
+                text={"PERFIL"}
+                color="primary"
+                iconClassName={"PERFIL"}
+              />
+            )}
+
+            {type === "seekerLog" && (
+              <UniversalButton
+                text={"CERRAR SESION"}
+                color="secondary"
+                iconClassName="CERRAR SESION"
+              />
+            )}
+
+            {type === "seekerLog" && (
+              <UniversalButton
+                text={"GUARDADOS"}
+                color="primary"
+                iconClassName={"GUARDADOS"}
+              />
+            )}
+
+            {type === "seekerLog" && (
+              <UniversalButton
+                text={"PERFIL"}
+                color="primary"
+                iconClassName={"PERFIL"}
+              />
+            )}
+
+            {type === "noLogged" && (
+              <UniversalButton
+                text={"UNIRSE"}
+                color="secondary"
+                iconClassName="UNIRSE"
+              />
+            )}
+
+            {type === "noLogged" && (
+              <UniversalButton
+                text={"INICIAR SESION"}
+                color="primary"
+                iconClassName="INICIAR SESION"
+              />
+            )}
           </div>
 
           {/* Menú móvil */}
