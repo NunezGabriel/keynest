@@ -5,6 +5,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
+import { FiPlusCircle } from "react-icons/fi";
 
 import { LuPencil } from "react-icons/lu";
 
@@ -14,6 +15,7 @@ const iconMap = {
   "AGREGAR": IoMdAdd,
   "EDITAR PROPIEDAD": LuPencil,
   "BUSCAR PROPIEDAD": IoSearchOutline,
+  "REGISTRAR NUEVA PROPIEDAD": FiPlusCircle,
   // puedes seguir agregando...
 };
 
