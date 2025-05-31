@@ -3,7 +3,6 @@ import {
   RiMoneyDollarCircleLine,
   RiMoneyDollarCircleFill,
 } from "react-icons/ri";
-import { MdOutlinePets } from "react-icons/md";
 import { FaRegBuilding } from "react-icons/fa";
 import { LuBath } from "react-icons/lu";
 import { IoBedOutline } from "react-icons/io5";
@@ -12,7 +11,7 @@ import { PiPawPrint } from "react-icons/pi";
 
 const CardComponent = ({ estado }) => {
   return (
-    <div className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg">
+    <div className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
       <section className="relative">
         <Image
           alt="imagen de la propiedad"

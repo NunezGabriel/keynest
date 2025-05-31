@@ -5,10 +5,7 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>
-        <Navbar type={"seekerLog"} />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
