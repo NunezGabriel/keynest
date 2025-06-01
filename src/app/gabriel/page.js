@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import CardComponent from "@/components/cardComponent";
+import FillterComponent from "@/components/fillterComponent";
 
 const GabrielPage = () => {
   const [isComprar, setIsComprar] = useState(false);
@@ -19,6 +20,8 @@ const GabrielPage = () => {
         ACTIVAR
       </button>
       <CardComponent estado={isComprar} />
+
+      <FillterComponent />
     </>
   );
 };

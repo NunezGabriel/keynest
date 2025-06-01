@@ -2,19 +2,24 @@
 import Link from "next/link";
 import { ImSpinner2 } from "react-icons/im";
 import { IoLogOutOutline } from "react-icons/io5";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaHeart } from "react-icons/fa";
+import { FaHouse } from "react-icons/fa6";
+
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { FiPlusCircle } from "react-icons/fi";
 import { LuPencil } from "react-icons/lu";
 
 const iconMap = {
-  "CERRAR SESIÓN": IoLogOutOutline,
-  "PERFIL": FaUserAlt,
-  "AGREGAR": IoMdAdd,
+  "CERRAR SESION": IoLogOutOutline,
+  "AGREGAR PROPIEDAD": IoMdAdd,
   "EDITAR PROPIEDAD": LuPencil,
   "BUSCAR PROPIEDAD": IoSearchOutline,
-  "REGISTRAR NUEVA PROPIEDAD": FiPlusCircle,
+  "MIS PROPIEDADES": FaHouse,
+  PERFIL: FaUserAlt,
+  UNIRSE: FaUserAlt,
+  "INICIAR SESION": FaUserAlt,
+  GUARDADOS: FaHeart,
 };
 
 const UniversalButton = ({
@@ -102,11 +107,6 @@ const UniversalButton = ({
 
 export default UniversalButton;
 
-
-
-
-
-
 /* "use client";
 import Link from "next/link";
 import { ImSpinner2 } from "react-icons/im";
@@ -185,24 +185,6 @@ const UniversalButton = ({
 
 export default UniversalButton;
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* "use client";
 import React from "react";
