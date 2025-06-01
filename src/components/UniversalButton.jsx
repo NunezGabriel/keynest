@@ -15,6 +15,7 @@ const iconMap = {
   "AGREGAR PROPIEDAD": IoMdAdd,
   "EDITAR PROPIEDAD": LuPencil,
   "BUSCAR PROPIEDAD": IoSearchOutline,
+  "REGISTRAR NUEVA PROPIEDAD": FiPlusCircle,
   "MIS PROPIEDADES": FaHouse,
   PERFIL: FaUserAlt,
   UNIRSE: FaUserAlt,
