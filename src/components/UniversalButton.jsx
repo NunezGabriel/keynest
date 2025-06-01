@@ -7,7 +7,7 @@ import { FaHouse } from "react-icons/fa6";
 
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
-
+import { FiPlusCircle } from "react-icons/fi";
 import { LuPencil } from "react-icons/lu";
 
 const iconMap = {
@@ -39,13 +39,12 @@ const UniversalButton = ({
   iconClassName = "",
   iconBackgroundStyle = "",
 }) => {
-  const Icon = iconMap[text]; // Se obtiene el ícono en base al texto
+  const Icon = iconMap[text];
 
   const baseColors = {
-    primary: "bg-[#1290CB] hover:bg-[#16b4ff] text-white",
-    secondary:
-      "bg-white text-[#1290CB] border border-[#1290CB] hover:border-[#16b4ff] hover:text-[#16b4ff]",
-    ghost: "bg-transparent text-[#1290CB]",
+    primary: "bg-[#1290CB] hover:bg-[#16b4ff] text-white focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
+    secondary: "bg-white text-[#1290CB] border border-[#1290CB] hover:bg-[#f0f8ff] hover:border-[#16b4ff] hover:text-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
+    ghost: "bg-transparent text-[#1290CB] hover:text-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
   };
 
   const sizes = {
@@ -54,21 +53,20 @@ const UniversalButton = ({
     lg: "text-lg py-3 px-6",
   };
 
-  const flexDirection =
-    iconPosition === "right" ? "flex-row-reverse" : "flex-row";
+  const flexDirection = iconPosition === "right" ? "flex-row-reverse" : "flex-row";
 
   const content = (
-    <div className={`flex items-center gap-2 justify-center ${flexDirection}`}>
+    <div className={`flex items-center gap-2 justify-center ${flexDirection} transition-all duration-200`}>
       {loading ? (
         <ImSpinner2 className="animate-spin" size={20} />
       ) : (
         Icon && (
-          <div className={`${iconBackgroundStyle}`}>
-            <Icon size={20} className={iconClassName} />
+          <div className={`${iconBackgroundStyle} group-hover:bg-[#16b4ff] transition-colors duration-200`}>
+            <Icon size={20} className={`${iconClassName} group-hover:text-white transition-colors duration-200`} />
           </div>
         )
       )}
-      <span>{text}</span>
+      <span className="group-hover:scale-105 transition-transform duration-200">{text}</span>
     </div>
   );
 
@@ -84,6 +82,12 @@ const UniversalButton = ({
       ${full ? "w-full" : ""}
       ${responsive}
       ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+      transition-all
+      duration-200
+      transform
+      group
+      hover:scale-105
+      focus:outline-none
       ${className}
     `.trim(),
     onClick,
@@ -91,7 +95,7 @@ const UniversalButton = ({
   };
 
   return href ? (
-    <Link href={href}>
+    <Link href={href} className="group">
       <span {...commonProps}>{content}</span>
     </Link>
   ) : (

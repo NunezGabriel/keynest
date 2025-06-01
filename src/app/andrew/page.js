@@ -1,4 +1,85 @@
 "use client";
+
+import UniversalButton from "@/components/UniversalButton";
+import DropdownButton from "@/components/DropdownButton";
+import RegisterPropertyMenu from "@/components/RegisterPropertyMenu";
+
+const Page = () => {
+  return (
+    <div className="flex flex-col md:flex-row gap-4 mt-4">
+      <UniversalButton
+        text="CERRAR SESIÓN"
+        color="secondary"
+        onClick={() => console.log("Cerrar sesión")}
+        responsive="hidden md:flex"
+        iconClassName="text-[#1290CB] group-hover:text-[#16b4ff]"
+        iconBackgroundStyle="bg-white group-hover:bg-[#f0f8ff] px-1 py-1 rounded-md"
+      />
+
+      <UniversalButton
+        text="PERFIL"
+        color="primary"
+        onClick={() => console.log("Ir al perfil")}
+        responsive="hidden md:flex"
+        iconClassName="text-white"
+        iconBackgroundStyle="bg-[#1290CB] group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
+      />
+
+      <UniversalButton
+        text="AGREGAR"
+        color="primary"
+        onClick={() => console.log("Agregar nueva propiedad")}
+        responsive="hidden md:flex"
+        iconClassName="text-white"
+        iconBackgroundStyle="bg-[#1290CB] group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
+      />
+
+      <UniversalButton
+        text="EDITAR PROPIEDAD"
+        iconPosition="left"
+        color="primary"
+        iconClassName="text-[#1290CB] group-hover:text-white"
+        iconBackgroundStyle="bg-white group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
+        onClick={() => console.log("Editar propiedad")}
+        responsive="hidden md:flex"
+      />
+
+      <UniversalButton
+        text="BUSCAR PROPIEDAD"
+        iconPosition="left"
+        color="secondary"
+        iconClassName="text-[#1290CB] group-hover:text-[#16b4ff]"
+        iconBackgroundStyle="bg-white group-hover:bg-[#f0f8ff] px-1 py-1 rounded-md"
+        onClick={() => console.log("Buscar propiedad")}
+        responsive="hidden md:flex"
+      />
+
+      <RegisterPropertyMenu />
+
+      <DropdownButton
+        text="MÁS"
+        options={[
+          {
+            label: "Con jardín",
+            onClick: () => console.log("Filtrar jardín"),
+          },
+          {
+            label: "Con cochera",
+            onClick: () => console.log("Filtrar cochera"),
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
+export default Page;
+
+
+
+
+
+/* "use client";
 import UniversalButton from "@/components/UniversalButton";
 import DropdownButton from "@/components/DropdownButton";
 
@@ -46,6 +127,14 @@ const Page = () => {
         responsive="hidden md:flex"
       />
 
+      <UniversalButton
+        text="REGISTRAR NUEVA PROPIEDAD"
+        iconPosition="left"
+        color="primary"
+        iconClassName="text-[#1290CB]"
+        iconBackgroundStyle="bg-white px-1 py-1 rounded-md"
+        onClick={() => console.log("Registrar nueva propiedad")}
+      />
 
       <DropdownButton
         text="MÁS"
@@ -66,7 +155,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page; */
 
 
 
