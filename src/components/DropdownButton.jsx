@@ -12,10 +12,15 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
-        className="bg-[#1290CB] hover:bg-[#16b4ff] text-white text-base py-2 px-4 rounded-2xl flex items-center gap-2"
+        className={`${
+          type === "compra"
+            ? "bg-white border border-[#1290CB] text-gray-500 "
+            : "bg-[#1290CB] hover:bg-[#16b4ff] text-white "
+        } text-base py-2 px-4 rounded-2xl flex items-center gap-2`}
       >
         {text}
         {type === "mas" && <FaChevronDown size={14} />}
+        {type === "compra" && <FaChevronDown size={14} />}
       </button>
       {open && (
         <div className="absolute z-10 mt-2 rounded-md shadow-lg border border-[#16b4ff] bg-white p-2">
