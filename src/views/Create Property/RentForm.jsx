@@ -20,15 +20,47 @@ const RentForm = () => {
   });
 
   const [imageFiles, setImageFiles] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData, imageFiles);
+    setIsSubmitting(true);
+
+    try {
+      // Validación básica
+      if (!formData.address || !formData.price || imageFiles.length === 0) {
+        alert("Por favor complete los campos requeridos y suba al menos una imagen");
+        return;
+      }
+
+      console.log("Datos a enviar:", { 
+        ...formData, 
+        images: imageFiles // Incluye las imágenes en los datos del formulario
+      });
+
+      // Aquí iría tu llamada a la API:
+      // const response = await fetch('/api/properties', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ ...formData, images: imageFiles })
+      // });
+
+      alert("Propiedad registrada exitosamente!");
+      // Resetear formulario si es necesario:
+      // setFormData({...});
+      // setImageFiles([]);
+    } catch (error) {
+      console.error("Error al enviar:", error);
+      alert("Ocurrió un error al registrar la propiedad");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-center">Registrar Propiedad en Alquiler</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center text-[#1290CB]">
+        Registrar Propiedad en Alquiler
+      </h1>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <PropertyFormFields
@@ -37,14 +69,21 @@ const RentForm = () => {
           mode="rent"
         />
 
-        <ImageUpload onImageSelect={setImageFiles} imageFiles={imageFiles} />
+        {/* Componente de imágenes mejorado */}
+        <ImageUpload 
+          onImageSelect={setImageFiles} 
+          imageFiles={imageFiles}
+        />
 
         <div className="flex justify-center">
           <UniversalButton
-            text="PUBLICAR PROPIEDAD"
-            onClick={handleSubmit}
+            type="submit"
+            text={isSubmitting ? "PUBLICANDO..." : "PUBLICAR PROPIEDAD"}
             color="primary"
-            className="text-sm px-6 py-2 rounded-md hover:bg-blue-600"
+            disabled={isSubmitting}
+            className={`text-sm px-6 py-2 rounded-md hover:bg-[#16b4ff] transition-colors ${
+              isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           />
         </div>
       </form>

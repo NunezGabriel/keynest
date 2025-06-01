@@ -1,9 +1,14 @@
 "use client";
 import SellForm from "@/views/Create Property/SellForm";
+import { useRouter } from "next/navigation";
 
-const SellPage = () => <SellForm />;
+const SellPage = () => {
+  const router = useRouter();
+  
+  return <SellForm onModeChange={() => router.push("/rent")} />;
+};
+
 export default SellPage;
-
 
 
 /* "use client";

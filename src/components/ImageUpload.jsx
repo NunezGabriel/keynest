@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { RiUploadLine } from "react-icons/ri";
+import { RiUploadLine, RiCloseLine } from "react-icons/ri";
 
 const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
   const fileInputRef = useRef(null);
@@ -17,17 +17,24 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
       setError("");
     }
 
-    onImageSelect(validFiles);
+    // Combina las imágenes existentes con las nuevas
+    onImageSelect([...imageFiles, ...validFiles]);
+  };
+
+  const handleRemoveImage = (indexToRemove) => {
+    const updatedFiles = imageFiles.filter((_, index) => index !== indexToRemove);
+    onImageSelect(updatedFiles);
   };
 
   const handleButtonClick = () => {
+    fileInputRef.current.value = ""; // Permite seleccionar el mismo archivo nuevamente
     fileInputRef.current.click();
   };
 
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold">FOTOS</h2>
+        <h2 className="text-lg text-[#373737] font-semibold">FOTOS</h2>
         <p className="text-sm text-gray-600">Sube tantas fotos como quieras</p>
       </div>
 
@@ -35,7 +42,7 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
         <button
           type="button"
           onClick={handleButtonClick}
-          className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-[8px] transition"
+          className="flex items-center gap-2 bg-[#1290CB] hover:bg-[#16b4ff] text-white px-4 py-2 rounded-[8px] transition"
         >
           <RiUploadLine className="text-xl" />
           ELIJE UN ARCHIVO
@@ -57,16 +64,25 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
       <p className="text-xs text-gray-500">Solo imágenes, max 5MB</p>
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      {/* Previsualización */}
+      {/* Previsualización con botón de eliminar */}
       {imageFiles.length > 0 ? (
         <div className="grid grid-cols-3 gap-4">
           {imageFiles.map((file, index) => (
-            <img
-              key={index}
-              src={URL.createObjectURL(file)}
-              alt={`Preview ${index}`}
-              className="w-full h-32 object-cover rounded border"
-            />
+            <div key={index} className="relative group">
+              <img
+                src={URL.createObjectURL(file)}
+                alt={`Preview ${index}`}
+                className="w-full h-32 object-cover rounded border"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(index)}
+                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label="Eliminar imagen"
+              >
+                <RiCloseLine className="text-sm" />
+              </button>
+            </div>
           ))}
         </div>
       ) : (

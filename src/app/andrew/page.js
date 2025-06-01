@@ -2,7 +2,7 @@
 
 import UniversalButton from "@/components/UniversalButton";
 import DropdownButton from "@/components/DropdownButton";
-import RegisterPropertyMenu from "@/components/RegisterPropertyMenu"; // 👈 importamos el nuevo componente
+import RegisterPropertyMenu from "@/components/RegisterPropertyMenu";
 
 const Page = () => {
   return (
@@ -12,6 +12,8 @@ const Page = () => {
         color="secondary"
         onClick={() => console.log("Cerrar sesión")}
         responsive="hidden md:flex"
+        iconClassName="text-[#1290CB] group-hover:text-[#16b4ff]"
+        iconBackgroundStyle="bg-white group-hover:bg-[#f0f8ff] px-1 py-1 rounded-md"
       />
 
       <UniversalButton
@@ -19,6 +21,8 @@ const Page = () => {
         color="primary"
         onClick={() => console.log("Ir al perfil")}
         responsive="hidden md:flex"
+        iconClassName="text-white"
+        iconBackgroundStyle="bg-[#1290CB] group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
       />
 
       <UniversalButton
@@ -26,14 +30,16 @@ const Page = () => {
         color="primary"
         onClick={() => console.log("Agregar nueva propiedad")}
         responsive="hidden md:flex"
+        iconClassName="text-white"
+        iconBackgroundStyle="bg-[#1290CB] group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
       />
 
       <UniversalButton
         text="EDITAR PROPIEDAD"
         iconPosition="left"
         color="primary"
-        iconClassName="text-[#1290CB]"
-        iconBackgroundStyle="bg-white px-1 py-1 rounded-md"
+        iconClassName="text-[#1290CB] group-hover:text-white"
+        iconBackgroundStyle="bg-white group-hover:bg-[#16b4ff] px-1 py-1 rounded-md"
         onClick={() => console.log("Editar propiedad")}
         responsive="hidden md:flex"
       />
@@ -41,14 +47,13 @@ const Page = () => {
       <UniversalButton
         text="BUSCAR PROPIEDAD"
         iconPosition="left"
-        color="#000000"
-        iconClassName="#000000"
-        iconBackgroundStyle="bg-white px-1 py-1 rounded-md"
+        color="secondary"
+        iconClassName="text-[#1290CB] group-hover:text-[#16b4ff]"
+        iconBackgroundStyle="bg-white group-hover:bg-[#f0f8ff] px-1 py-1 rounded-md"
         onClick={() => console.log("Buscar propiedad")}
         responsive="hidden md:flex"
       />
 
-      {/* 👇 Se usa el nuevo componente con menú */}
       <RegisterPropertyMenu />
 
       <DropdownButton
