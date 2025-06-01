@@ -5,6 +5,8 @@ import UniversalButton from "./UniversalButton";
 
 const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
   const [open, setOpen] = useState(false);
+  const [selectedCuartos, setSelectedCuartos] = useState(null);
+  const [selectedBanos, setSelectedBanos] = useState(null);
 
   return (
     <div className="relative inline-block text-left">
@@ -87,6 +89,72 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
                 </div>
               </div>
 
+              <div className="flex justify-end">
+                <UniversalButton text={"ACEPTAR"} />
+              </div>
+            </div>
+          )}
+
+          {type === "cuartos" && (
+            <div className="flex flex-col gap-3">
+              <h1 className="text-xs font-light tracking-[1.5px]">CUARTOS</h1>
+              <div className="flex">
+                {[1, 2, 3, 4, "+4"].map((option) => (
+                  <div
+                    key={`cuartos-${option}`}
+                    className={`border-[1.5px] border-[#a4a4a4] py-2 px-4 cursor-pointer 
+            ${selectedCuartos === option ? "bg-[#1290CB] text-white" : ""}
+            ${option === 1 ? "rounded-tl-lg rounded-bl-lg" : ""}
+            ${option === "+4" ? "rounded-tr-lg rounded-br-lg" : ""}`}
+                    onClick={() => {
+                      setSelectedCuartos(option);
+                      console.log("Cuartos seleccionados:", option);
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+
+              <h1 className="text-xs font-light tracking-[1.5px]">BAÑOS</h1>
+              <div className="flex">
+                {[1, 2, 3, 4, "+4"].map((option) => (
+                  <div
+                    key={`banos-${option}`}
+                    className={`border-[1.5px] border-[#a4a4a4] py-2 px-4 cursor-pointer 
+            ${selectedBanos === option ? "bg-[#1290CB] text-white" : ""}
+            ${option === 1 ? "rounded-tl-lg rounded-bl-lg" : ""}
+            ${option === "+4" ? "rounded-tr-lg rounded-br-lg" : ""}`}
+                    onClick={() => {
+                      setSelectedBanos(option);
+                      console.log("Baños seleccionados:", option);
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-end">
+                <UniversalButton text={"ACEPTAR"} />
+              </div>
+            </div>
+          )}
+
+          {type === "compra" && (
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2 items-center mb-3">
+                <input type="checkbox" className="h-4 w-4" />
+                <label className="text-sm">Ambos</label>
+              </div>
+              <div className="flex gap-2 items-center mb-3">
+                <input type="checkbox" className="h-4 w-4" />
+                <label className="text-sm">Compra</label>
+              </div>
+              <div className="flex gap-2 items-center mb-3">
+                <input type="checkbox" className="h-4 w-4" />
+                <label className="text-sm">Renta</label>
+              </div>
               <div className="flex justify-end">
                 <UniversalButton text={"ACEPTAR"} />
               </div>

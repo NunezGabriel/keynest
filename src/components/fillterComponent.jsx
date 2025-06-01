@@ -9,7 +9,7 @@ const FillterComponent = () => {
         <UniversalButton />
         <UniversalButton />
         <UniversalButton />
-        <DropdownButton type="tipo" />
+        <DropdownButton type="compra" />
       </div>
       <DropdownButton />
     </div>
