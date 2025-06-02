@@ -1,13 +1,38 @@
-import Link from "next/link";
+import Footer from "@/components/footer";
+import Navbar from "@/components/Navbar";
+import HomeGuest from "@/views/dashboard/HomeGuest";
+import HomeSeeker from "@/views/dashboard/HomeSeeker";
+import HomeLandlord from "@/views/dashboard/HomeLandlord";
 
-export default function Home() {
+const TheRealOne = () => {
+  const rendereo = "1";
+
   return (
-    <div className="flex gap-3">
-      <Link href="/andrew">Andrew</Link>
-      <Link href="/kelvin">Kelvin</Link>
-      <Link href="/joshua">Joshua</Link>
-      <Link href="/gabriel">Gabriel</Link>
-      <Link href="/therealone">The app</Link>
+    <div>
+      {rendereo === "1" && (
+        <>
+          <Navbar type={"noLogged"} />
+          <HomeGuest />
+        </>
+      )}
+
+      {rendereo === "2" && (
+        <>
+          <Navbar type={"landlordLog"} />
+          <HomeLandlord />
+        </>
+      )}
+
+      {rendereo === "3" && (
+        <>
+          <Navbar type={"seekerLog"} />
+          <HomeSeeker />
+        </>
+      )}
+
+      <Footer />
     </div>
   );
-}
+};
+
+export default TheRealOne;
