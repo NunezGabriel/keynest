@@ -8,10 +8,14 @@ import { LuBath } from "react-icons/lu";
 import { IoBedOutline } from "react-icons/io5";
 import { BsBoundingBox } from "react-icons/bs";
 import { PiPawPrint } from "react-icons/pi";
+import Link from "next/link";
 
 const CardComponent = ({ estado }) => {
   return (
-    <div className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+    <Link
+      href={"/"}
+      className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl"
+    >
       <section className="relative">
         <Image
           alt="imagen de la propiedad"
@@ -67,7 +71,7 @@ const CardComponent = ({ estado }) => {
           </div>
         </div>
       </section>
-    </div>
+    </Link>
   );
 };
 
