@@ -13,7 +13,7 @@ import Link from "next/link";
 const CardComponent = ({ estado }) => {
   return (
     <Link
-      href={"/"}
+      href={"/main-board/propertieDetail"}
       className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl"
     >
       <section className="relative">

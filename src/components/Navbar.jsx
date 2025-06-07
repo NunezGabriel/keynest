@@ -60,6 +60,7 @@ export default function Navbar({ type }) {
                 text={"MIS PROPIEDADES"}
                 color="primary"
                 iconClassName={"MIS PROPIEDADES"}
+                href={"/my-properties"}
               />
             )}
 
@@ -100,7 +101,7 @@ export default function Navbar({ type }) {
                 text={"UNIRSE"}
                 color="secondary"
                 iconClassName="UNIRSE"
-                href={"/register"}
+                href={"/aunth/register"}
               />
             )}
 
