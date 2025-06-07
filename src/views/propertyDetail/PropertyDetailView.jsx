@@ -6,12 +6,12 @@ import Footer from "@/components/footer";
 import ImageCarousel from "@/components/propertyDetails/ImageCarousel";
 import PropertyDescription from "@/components/propertyDetails/PropertyDescription";
 import PropertySpecs from "@/components/propertyDetails/PropertySpecs";
-import ContactBox from "@/components/ContactBox";
+import ContactBox from "@/components/propertyDetails/ContactBox";
 
 export default function PropertyDetailView() {
   return (
     <div className="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
-      <Navbar />
+      <Navbar type={"landlordLog"} />
 
       <main className="max-w-6xl mx-auto px-4 py-6 flex flex-col gap-6 md:gap-10 flex-grow">
         {/* Carousel y ContactBox */}
