@@ -6,8 +6,8 @@ const MainBoard = () => {
   return (
     <div>
       {/* <MainBoardNoLogged /> */}
-      <MainBoardLandlord />
-      {/* <MainBoardSeeker /> */}
+      {/* <MainBoardLandlord /> */}
+      <MainBoardSeeker />
     </div>
   );
 };

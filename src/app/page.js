@@ -5,7 +5,7 @@ import HomeSeeker from "@/views/dashboard/HomeSeeker";
 import HomeLandlord from "@/views/dashboard/HomeLandlord";
 
 const TheRealOne = () => {
-  const rendereo = "2";
+  const rendereo = "3";
 
   return (
     <div>

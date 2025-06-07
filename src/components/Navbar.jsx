@@ -25,7 +25,7 @@ export default function Navbar({ type }) {
               />
             )}
 
-            {type === "seeker" && (
+            {type === "seekerLog" && (
               <UniversalButton
                 text={"BUSCAR PROPIEDAD"}
                 color="ghost"
@@ -85,6 +85,7 @@ export default function Navbar({ type }) {
                 text={"GUARDADOS"}
                 color="primary"
                 iconClassName={"GUARDADOS"}
+                href={"/save-properties"}
               />
             )}
 
