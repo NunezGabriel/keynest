@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { PiHouseFill } from "react-icons/pi";
 import { FaBars } from "react-icons/fa";
 import UniversalButton from "./buttons/UniversalButton";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar({ type }) {
+  const { logout } = useAuth();
+
   return (
     <nav className="bg-white shadow-md w-full z-10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,6 +57,7 @@ export default function Navbar({ type }) {
                 text={"CERRAR SESION"}
                 color="secondary"
                 iconClassName="CERRAR SESION"
+                onClick={logout}
               />
             )}
 
@@ -77,6 +83,7 @@ export default function Navbar({ type }) {
                 text={"CERRAR SESION"}
                 color="secondary"
                 iconClassName="CERRAR SESION"
+                onClick={logout}
               />
             )}
 
