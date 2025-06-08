@@ -1,38 +1,42 @@
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
 import Footer from "@/components/footer";
 import Navbar from "@/components/Navbar";
 import HomeGuest from "@/views/dashboard/HomeGuest";
 import HomeSeeker from "@/views/dashboard/HomeSeeker";
 import HomeLandlord from "@/views/dashboard/HomeLandlord";
 
-const TheRealOne = () => {
-  const rendereo = "3";
+const Home = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div className="text-center mt-20">Cargando...</div>; // o un spinner
+  }
 
   return (
     <div>
-      {rendereo === "1" && (
+      {!user && (
         <>
-          <Navbar type={"noLogged"} />
+          <Navbar type="noLogged" />
           <HomeGuest />
         </>
       )}
-
-      {rendereo === "2" && (
+      {user?.user_type === "seeker" && (
         <>
-          <Navbar type={"landlordLog"} />
-          <HomeLandlord />
-        </>
-      )}
-
-      {rendereo === "3" && (
-        <>
-          <Navbar type={"seekerLog"} />
+          <Navbar type="seekerLog" />
           <HomeSeeker />
         </>
       )}
-
+      {user?.user_type === "landlord" && (
+        <>
+          <Navbar type="landlordLog" />
+          <HomeLandlord />
+        </>
+      )}
       <Footer />
     </div>
   );
 };
 
-export default TheRealOne;
+export default Home;

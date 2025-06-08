@@ -1,11 +1,11 @@
-import Footer from "@/components/footer";
-import Navbar from "../components/Navbar";
 import "./globals.css";
-
+import { AuthProvider } from "@/context/AuthContext";
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
