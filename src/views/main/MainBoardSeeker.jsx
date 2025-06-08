@@ -8,7 +8,7 @@ const MainBoardSeeker = () => {
 
   return (
     <div>
-      <Navbar type={"noLogged"} />
+      <Navbar type={"seekerLog"} />
       <FillterComponent />
       <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-24 mb-24">
         {prrueba.map((item, index) => (
