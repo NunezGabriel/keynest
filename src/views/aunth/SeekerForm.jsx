@@ -4,12 +4,11 @@ import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import UniversalButton from "@/components/buttons/UniversalButton";
 
-const SeekerForm = () => {
+const LandlordForm = () => {
   const { register } = useAuth();
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
     password: "",
     confirm: "",
   });
@@ -29,7 +28,6 @@ const SeekerForm = () => {
     await register({
       name: form.name,
       email: form.email,
-      phone: form.phone,
       password: form.password,
       password_confirmation: form.confirm,
       role: "seeker",
@@ -68,20 +66,6 @@ const SeekerForm = () => {
                 name="email"
                 placeholder="user@mail.com"
                 value={form.email}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <label className="text-xs text-[#373737] tracking-[1.5px]">
-                PHONE
-              </label>
-              <input
-                className="p-2 border border-[#1290cb] rounded-lg"
-                type="tel"
-                name="phone"
-                placeholder="999-999-999"
-                value={form.phone}
                 onChange={handleChange}
               />
             </div>
@@ -127,4 +111,4 @@ const SeekerForm = () => {
   );
 };
 
-export default SeekerForm;
+export default LandlordForm;

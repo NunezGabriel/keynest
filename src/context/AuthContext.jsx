@@ -53,10 +53,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   // 📝 Register
+
   const register = async ({
     name,
     email,
-    phone,
     password,
     password_confirmation,
     role,
@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({
         name,
         email,
-        phone,
         password,
         password_confirmation,
         user_type: role, // Laravel espera "user_type"
