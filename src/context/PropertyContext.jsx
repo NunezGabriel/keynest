@@ -12,6 +12,13 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
+  const getMyProperties = async () => {
+    const res = await fetchWithToken(
+      "http://localhost:8000/api/properties/mine"
+    );
+    return await res.json();
+  };
+
   // 🔍 Obtener una propiedad por ID
   const getProperty = async (id) => {
     const res = await fetchWithToken(
@@ -62,6 +69,7 @@ export const PropertyProvider = ({ children }) => {
     <PropertyContext.Provider
       value={{
         getProperties,
+        getMyProperties,
         getProperty,
         createProperty,
         updateProperty,
