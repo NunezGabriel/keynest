@@ -4,32 +4,40 @@ import { useState, useEffect } from "react";
 import { RiSearchLine, RiMoneyDollarCircleLine } from "react-icons/ri";
 import ImageUpload from "@/components/propertyForm/ImageUpload";
 import UniversalButton from "@/components/buttons/UniversalButton";
+import { useProperty } from "@/context/PropertyContext";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const PropertyForm = () => {
-  const [mode, setMode] = useState("rent"); // 'rent' o 'sell'
-  const [formData, setFormData] = useState({
-    operationType: mode,
-    address: "",
-    price: "",
-    maintenanceCost: "",
-    propertyType: "",
-    rooms: "",
-    bathrooms: "",
-    area: "",
-    petsAllowed: false,
-    description: "",
-  });
+  const { createProperty } = useProperty();
+  const { user } = useAuth();
+  const router = useRouter();
 
+  const [mode, setMode] = useState("rent"); // 'rent' o 'sell'
   const [imageFiles, setImageFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    is_rent: mode === "rent",
+    location: "",
+    price: "",
+    maintenance_cost: "",
+    property_type: "",
+    bedrooms: "",
+    bathrooms: "",
+    square_meters: "",
+    pets_allowed: false,
+    description: "",
+    status: "disponible",
+  });
 
   // Resetear campos específicos al cambiar el modo
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      operationType: mode,
-      maintenanceCost: mode === "rent" ? prev.maintenanceCost : "",
-      petsAllowed: mode === "rent" ? prev.petsAllowed : false,
+      is_rent: mode === "rent",
+      maintenance_cost: mode === "rent" ? prev.maintenance_cost : "",
+      pets_allowed: mode === "rent" ? prev.pets_allowed : false,
     }));
   }, [mode]);
 
@@ -37,7 +45,7 @@ const PropertyForm = () => {
     const { name, value, type, checked } = e.target;
 
     // Validación para campos numéricos
-    if (["area", "price", "maintenanceCost"].includes(name)) {
+    if (["square_meters", "price", "maintenance_cost"].includes(name)) {
       const isValidNumber = /^\d*\.?\d{0,2}$/.test(value) || value === "";
 
       if (isValidNumber) {
@@ -59,7 +67,10 @@ const PropertyForm = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    if (["area", "price", "maintenanceCost"].includes(name) && value !== "") {
+    if (
+      ["square_meters", "price", "maintenance_cost"].includes(name) &&
+      value !== ""
+    ) {
       const num = parseFloat(value);
       if (!isNaN(num)) {
         setFormData({ ...formData, [name]: num.toFixed(2) });
@@ -81,18 +92,41 @@ const PropertyForm = () => {
     setIsSubmitting(true);
 
     try {
-      if (!formData.address || !formData.price || imageFiles.length === 0) {
-        alert("Complete los campos requeridos y suba al menos una imagen");
+      // Validaciones básicas
+      if (!formData.location || !formData.price) {
+        alert("Complete los campos requeridos");
         return;
       }
 
-      console.log("Datos a enviar:", { ...formData, images: imageFiles });
-      alert(
-        `Propiedad en ${mode === "rent" ? "alquiler" : "venta"} registrada!`
-      );
+      // Preparar datos para el backend
+      const propertyToSend = {
+        ...formData,
+        title: formData.location, // Usamos la ubicación como título si no hay título específico
+        price: parseFloat(formData.price),
+        square_meters: parseInt(formData.square_meters),
+        bedrooms: parseInt(formData.bedrooms),
+        bathrooms: parseInt(formData.bathrooms),
+        property_type: formData.property_type.toLowerCase(), // Ajuste para el backend
+        // Aseguramos que maintenance_cost sea null cuando es venta
+        maintenance_cost:
+          mode === "rent"
+            ? formData.maintenance_cost
+              ? parseFloat(formData.maintenance_cost)
+              : null
+            : null, // <-- Esto es lo nuevo que agregamos
+      };
+
+      // Enviar al backend
+      const createdProperty = await createProperty(propertyToSend);
+
+      console.log("Propiedad creada:", createdProperty);
+      alert(`Propiedad registrada exitosamente!`);
+      router.push("/my-properties"); // Redirigir después de crear
     } catch (error) {
-      console.error("Error:", error);
-      alert("Ocurrió un error. Por favor intente nuevamente.");
+      console.error("Error creando propiedad:", error);
+      alert(
+        "Ocurrió un error al crear la propiedad. Por favor intente nuevamente."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -142,16 +176,17 @@ const PropertyForm = () => {
         {/* DIRECCIÓN */}
         <div>
           <label className="block text-sm font-medium mb-1 text-[#373737]">
-            DIRECCIÓN
+            DIRECCIÓN *
           </label>
           <div className="relative">
             <RiSearchLine className="absolute left-3 top-3 text-gray-400" />
             <input
               type="text"
-              name="address"
+              name="location"
               placeholder="Ingresa dirección"
-              value={formData.address}
+              value={formData.location}
               onChange={handleChange}
+              required
               className="w-full pl-10 pr-4 py-2 border border-[#1290CB] rounded-lg"
             />
           </div>
@@ -160,7 +195,7 @@ const PropertyForm = () => {
         {/* COSTO MENSUAL */}
         <div>
           <label className="block text-sm font-medium mb-1 text-[#373737]">
-            {mode === "rent" ? "COSTO MENSUAL" : "PRECIO DE VENTA"}
+            {mode === "rent" ? "COSTO MENSUAL *" : "PRECIO DE VENTA *"}
           </label>
           <div className="relative">
             <RiMoneyDollarCircleLine className="absolute left-3 top-3 text-gray-400" />
@@ -173,6 +208,7 @@ const PropertyForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               onKeyDown={handleNumberKeyDown}
+              required
               className="w-full pl-10 pr-4 py-2 border border-[#1290CB] rounded-lg"
             />
           </div>
@@ -188,10 +224,10 @@ const PropertyForm = () => {
               <RiMoneyDollarCircleLine className="absolute left-3 top-3 text-gray-400" />
               <input
                 type="number"
-                name="maintenanceCost"
+                name="maintenance_cost"
                 placeholder="0.00"
                 inputMode="decimal"
-                value={formData.maintenanceCost || ""}
+                value={formData.maintenance_cost || ""}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onKeyDown={handleNumberKeyDown}
@@ -204,16 +240,17 @@ const PropertyForm = () => {
         {/* TIPO DE PROPIEDAD */}
         <div>
           <label className="block text-sm text-[#373737] font-medium mb-1">
-            TIPO DE PROPIEDAD
+            TIPO DE PROPIEDAD *
           </label>
           <div className="flex gap-4">
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
-                name="propertyType"
-                value="Departamento"
-                checked={formData.propertyType === "Departamento"}
+                name="property_type"
+                value="departamento"
+                checked={formData.property_type === "departamento"}
                 onChange={handleChange}
+                required
                 className="w-4 h-4 accent-[#1290CB] hover:accent-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2 cursor-pointer"
               />
               <span>Departamento</span>
@@ -222,9 +259,9 @@ const PropertyForm = () => {
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
-                name="propertyType"
-                value="Casa"
-                checked={formData.propertyType === "Casa"}
+                name="property_type"
+                value="casa"
+                checked={formData.property_type === "casa"}
                 onChange={handleChange}
                 className="w-4 h-4 accent-[#1290CB] hover:accent-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2 cursor-pointer"
               />
@@ -237,12 +274,13 @@ const PropertyForm = () => {
         <div className="flex gap-4">
           <div className="flex-1">
             <label className="block text-sm text-[#373737] font-medium mb-1">
-              CUARTOS
+              CUARTOS *
             </label>
             <select
-              name="rooms"
-              value={formData.rooms || ""}
+              name="bedrooms"
+              value={formData.bedrooms || ""}
               onChange={handleChange}
+              required
               className="w-full border border-[#1290CB] p-2 rounded-lg"
             >
               <option value="">Seleccione</option>
@@ -255,12 +293,13 @@ const PropertyForm = () => {
           </div>
           <div className="flex-1">
             <label className="block text-sm text-[#373737] font-medium mb-1">
-              BAÑOS
+              BAÑOS *
             </label>
             <select
               name="bathrooms"
               value={formData.bathrooms || ""}
               onChange={handleChange}
+              required
               className="w-full border border-[#1290CB] p-2 rounded-lg"
             >
               <option value="">Seleccione</option>
@@ -273,17 +312,18 @@ const PropertyForm = () => {
           </div>
           <div className="flex-1">
             <label className="block text-sm text-[#373737] font-medium mb-1">
-              ÁREA EN M²
+              ÁREA EN M² *
             </label>
             <input
               type="text"
-              name="area"
+              name="square_meters"
               placeholder="0.00"
               inputMode="decimal"
-              value={formData.area || ""}
+              value={formData.square_meters || ""}
               onChange={handleChange}
               onBlur={handleBlur}
               onKeyDown={handleNumberKeyDown}
+              required
               className="w-full border border-[#1290CB] p-2 rounded-lg"
             />
           </div>
@@ -295,8 +335,8 @@ const PropertyForm = () => {
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="checkbox"
-                name="petsAllowed"
-                checked={formData.petsAllowed || false}
+                name="pets_allowed"
+                checked={formData.pets_allowed || false}
                 onChange={handleChange}
                 className="w-4 h-4 accent-[#1290CB] hover:accent-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2 cursor-pointer"
               />
@@ -313,13 +353,15 @@ const PropertyForm = () => {
         {/* SOBRE ESTA PROPIEDAD */}
         <div>
           <label className="block text-[#373737] font-medium mb-1">
-            SOBRE ESTA PROPIEDAD
+            SOBRE ESTA PROPIEDAD *
           </label>
           <textarea
             name="description"
             placeholder="La propiedad es genial porque..."
             value={formData.description}
             onChange={handleChange}
+            required
+            rows={4}
             className="w-full border border-[#1290CB] p-2 rounded-lg"
           />
           <p className="text-sm text-gray-500 mt-1">
@@ -329,8 +371,8 @@ const PropertyForm = () => {
           </p>
         </div>
 
-        {/* Componente de imágenes */}
-        <ImageUpload onImageSelect={setImageFiles} imageFiles={imageFiles} />
+        {/* Componente de imágenes (comentado por ahora) */}
+        {/* <ImageUpload onImageSelect={setImageFiles} imageFiles={imageFiles} /> */}
 
         <div className="flex justify-center">
           <UniversalButton
