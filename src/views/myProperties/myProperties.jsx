@@ -100,7 +100,8 @@ const MyProperties = () => {
             filteredProperties.map((property) => (
               <CardComponent
                 key={property.property_id}
-                type={"landlord"} // Pasamos los datos reales de la propiedad
+                type={"landlord"}
+                property={property} // Pasamos los datos reales de la propiedad
               />
             ))
           ) : (

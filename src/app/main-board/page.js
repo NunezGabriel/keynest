@@ -13,9 +13,9 @@ const MainBoard = () => {
 
   if (!user) return <MainBoardNoLogged />;
 
-  if (user.role === "seeker") return <MainBoardSeeker />;
+  if (user.user_type === "seeker") return <MainBoardSeeker />;
 
-  if (user.role === "landlord") return <MainBoardLandlord />;
+  if (user.user_type === "landlord") return <MainBoardLandlord />;
 
   return <MainBoardNoLogged />; // fallback por si el rol es desconocido
 };
