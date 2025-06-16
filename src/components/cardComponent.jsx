@@ -42,14 +42,14 @@ const CardComponent = ({ type, property }) => {
             objectFit="cover"
           />
           {type === "liked" && (
-            <div className="absolute bg-[#1290CB] left-0 text-white tracking-wide px-6 py-1 rounded-br-xl gap-2 items-center flex">
+            <div className="absolute bg-[#ff2f3d] left-0 text-white tracking-wide px-6 py-1 rounded-br-xl gap-2 items-center flex">
               <FaHeart size={27} color="white" />
             </div>
           )}
           <div
-            className={`absolute bg-[${
-              is_rent ? "#005F8C" : "#1290CB"
-            }] right-0 text-white tracking-wide text-[16px] px-2.5 py-1 rounded-bl-xl gap-2 items-center flex`}
+            className={`absolute ${
+              is_rent ? "bg-[#ffc107]" : "bg-[#22a069]"
+            } right-0 text-white tracking-wide text-[16px] px-2.5 py-1 rounded-bl-xl gap-2 items-center flex`}
           >
             <RiMoneyDollarCircleFill size={30} color="white" />
             <h1 className="text-[16px]">{is_rent ? "ALQUILAR" : "COMPRAR"}</h1>
