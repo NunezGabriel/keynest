@@ -1,5 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp" width="300" alt="Laravel Logo"></a>
-<a href="https://laravel.com" target="_blank"><img src="https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp" width="300" alt="Laravel Logo"></a></p>
+<a href="https://laravel.com" target="_blank"><img src="https://www.rapiddg.com/sites/default/files/imce-files/react.png" width="300" alt="Laravel Logo"></a></p>
 
 # KeyNest - Plataforma Web de Compra y Alquiler de Propiedades
 
