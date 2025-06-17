@@ -132,5 +132,21 @@ Se deben enviar las solicitudes con el encabezado:
 
 /frontend       # Next.js + Tailwind
   ├── components/
-  ├── pages/
+  ├── views/
   └── context/
+```
+## Iniciar Proyecto
+#Frontend
+```bash
+git clone git@github.com:NunezGabriel/keynest.git
+npm install
+npm run dev
+```
+#Backend
+```bash
+git clone git@github.com:NunezGabriel/keynest.git
+composer install
+cp .env.example .env   #crear el .env si no lo tienes y lo configuras en abse al example .env
+php artisan migrate
+php artisan serve
+```
