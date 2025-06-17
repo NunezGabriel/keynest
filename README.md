@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://devtop.io/wp-content/uploads/2022/11/Next-JS.png" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp" width="300" alt="Laravel Logo"></a></p>
 
 # KeyNest - Plataforma Web de Compra y Alquiler de Propiedades
 
