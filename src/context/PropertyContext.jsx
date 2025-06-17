@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 const PropertyContext = createContext();
 
 export const PropertyProvider = ({ children }) => {
-  const { fetchWithToken, user } = useAuth(); // Usamos tu función fetchWithToken del AuthContext
+  const { fetchWithToken, user } = useAuth();
 
   // 🏠 Obtener todas las propiedades
   const getProperties = async () => {
@@ -65,6 +65,48 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
+  // ❤️ Obtener propiedades favoritas
+  const getFavoriteProperties = async () => {
+    const res = await fetchWithToken("http://localhost:8000/api/favorites");
+    return await res.json();
+  };
+
+  // ❤️ Dar like a una propiedad
+  const addFavorite = async (propertyId) => {
+    const res = await fetchWithToken("http://localhost:8000/api/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ property_id: propertyId }),
+    });
+    return await res.json();
+  };
+
+  // ❤️ Quitar like a una propiedad
+  const removeFavorite = async (favoriteId) => {
+    const res = await fetchWithToken(
+      `http://localhost:8000/api/favorites/${favoriteId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    return await res.json();
+  };
+
+  // ❤️ Verificar si una propiedad es favorita
+  const isPropertyFavorite = async (propertyId) => {
+    if (!user) return false;
+
+    try {
+      const favorites = await getFavoriteProperties();
+      return favorites.some((fav) => fav.property?.property_id === propertyId);
+    } catch (error) {
+      console.error("Error verificando favorito:", error);
+      return false;
+    }
+  };
+
   return (
     <PropertyContext.Provider
       value={{
@@ -74,6 +116,11 @@ export const PropertyProvider = ({ children }) => {
         createProperty,
         updateProperty,
         deleteProperty,
+        // Funciones de favoritos
+        getFavoriteProperties,
+        addFavorite,
+        removeFavorite,
+        isPropertyFavorite,
       }}
     >
       {children}
