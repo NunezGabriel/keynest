@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="[https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp](https://www.sebastian-gomez.com/_next/image?url=https%3A%2F%2Fus-east-1.graphassets.com%2FAbgsgv6A7SOmdd6d9vwuEz%2FVKHHNvEETYqZRkqgjybc&w=3840&q=75)" width="400" alt="Laravel Logo"></a></p>
 
 # KeyNest - Plataforma Web de Compra y Alquiler de Propiedades
 
