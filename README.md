@@ -1,54 +1,151 @@
-# KeyNest - Ecommerce de compra y venta de propiedades
+# KeyNest - Plataforma web de compra y alquiler de propiedades
 
-El proyecto consiste en el desarrollo de una plataforma web de tipo e-commerce inmobiliario, cuyo objetivo principal es permitir la compra, venta y alquiler de propiedades residenciales como casas y apartamentos. La aplicación estará construida utilizando Laravel como framework backend y MongoDB como sistema de base de datos NoSQL.  
-El sistema estará orientado a la interacción entre dos perfiles de usuario diferenciados:  
-**Landlord** (usuario que publica y administra propiedades)  
-**Customer** (usuario que busca y adquiere propiedades)
+**KeyNest** es una aplicación web de tipo e-commerce inmobiliario que permite la publicación, visualización, y gestión de propiedades residenciales como casas y departamentos, tanto en venta como en alquiler.
 
-El enfoque del proyecto debe considerar que ambas experiencias de usuario (Landlord y Customer) son distintas, y por tanto, tanto las funcionalidades como las interfaces gráficas deben diseñarse de forma diferenciada pero coherente.
+El sistema está compuesto por un **backend desarrollado en Laravel** que funciona como **API RESTful protegida con tokens de autenticación Bearer usando Laravel Sanctum**, y un **frontend moderno creado con Next.js**, que maneja las vistas, la lógica del cliente y la interacción del usuario.
 
-## Tipos de Usuario
+## 🎯 Objetivo
 
-El sistema contará con dos roles claramente definidos. Esta diferenciación debe aplicarse desde el inicio, es decir, al momento de registrarse o iniciar sesión. El usuario debe elegir qué tipo de cuenta desea usar.
+Facilitar la conexión entre propietarios (landlords) y personas que buscan propiedades (seekers) a través de una experiencia clara, funcional y responsiva. También incorpora un panel administrativo para gestionar usuarios y propiedades.
 
-### 1. Landlord
+---
 
-El landlord es el usuario encargado de publicar propiedades. Estas propiedades pueden estar en venta o alquiler, y deberán contar con una serie de características específicas. Este usuario también podrá administrar las propiedades que ha publicado.
+## 🧑‍💻 Roles de Usuario
 
-**Acciones esperadas:**
+El sistema maneja **tres tipos de usuarios**, cada uno con permisos y funcionalidades bien definidos:
 
-- Registro e inicio de sesión como landlord
-- Publicación de una nueva propiedad (casa o apartamento)
-- Especificación de características como:
-  - Tipo de propiedad (casa o apartamento)
-  - Espacio en metros cuadrados
-  - Número de habitaciones
-  - Si se admiten mascotas
-  - Precio de venta o alquiler
-  - Ubicación de la propiedad
-  - Otros atributos que puedan definirse
-- Edición de propiedades publicadas
-- Eliminación o finalización de una propiedad publicada (por ejemplo, si ya se vendió o alquiló)
-- Visualización de sus propiedades activas y gestionadas
+### 🔐 1. Admin
 
-### 2. Customer
+El usuario administrador tiene acceso privilegiado para la **gestión global de la plataforma**:
 
-El customer es el usuario que consulta, busca, selecciona y eventualmente compra o alquila propiedades publicadas por los landlords. Además, puede guardar propiedades como favoritas para tenerlas accesibles en cualquier momento.
+- Visualiza todas las propiedades del sistema.
+- Elimina cualquier propiedad (publicada por cualquier landlord).
+- Visualiza estadísticas generales (propiedades, usuarios, etc.).
+- Gestiona usuarios:
+  - Ver listado completo de usuarios.
+  - Editar datos de los usuarios.
+  - Eliminar usuarios.
 
-**Acciones esperadas:**
+> ⚠️ El admin no crea ni edita propiedades, solo gestiona el sistema.
 
-- Registro e inicio de sesión como customer
-- Navegación por el catálogo de propiedades
-- Visualización de detalles de propiedades específicas
-- Agregar propiedades a una lista de favoritos
-- Posibilidad de adquirir o alquilar propiedades (puede definirse más adelante cómo se gestiona esta acción: solicitud, contacto, pago, etc.)
+---
 
-### 3. Filtros
+### 🏠 2. Landlord
 
-Al momento de buscar una propiedad se podrá filtrar por, bussqueda manual, precio, baños y habitaciones, mas (mascotas, tamano en metros cuadrados), renta o compra y tipo de propiedad (casa o departamento)
+Usuario propietario o publicador de propiedades. Este tipo de cuenta puede:
 
-## Arquitectura y Tecnologías del Proyecto
+- Registrarse e iniciar sesión como landlord.
+- Crear nuevas propiedades (en venta o alquiler).
+- Agregar características detalladas:
+  - Título, descripción, ubicación.
+  - Tipo (casa o departamento).
+  - Metros cuadrados.
+  - Habitaciones, baños.
+  - Permitir mascotas.
+  - Costo de mantenimiento.
+  - Precio.
+  - Estado (disponible, cerrada, etc.).
+- Subir múltiples imágenes.
+- Editar sus propias propiedades.
+- Eliminar sus propias propiedades.
+- Ver el listado de **"Mis Propiedades"** (solo las que ha creado).
+- Filtrar propiedades por estado, tipo, precio, etc.
 
-- **Framework Backend:** Laravel
-- **Base de datos:** MongoDB
-- **Frontend:** NextJS con Tailwind — no se si querra todo hecho en Laravel (hay que preguntar ps)
+> 🚫 No puede ver ni editar propiedades de otros landlords.
+
+---
+
+### 🔍 3. Seeker
+
+Usuario visitante que busca propiedades. Puede:
+
+- Registrarse e iniciar sesión como seeker.
+- Navegar y buscar propiedades públicas.
+- Ver detalles de cada propiedad.
+- Aplicar filtros de búsqueda por:
+  - Tipo (casa o departamento).
+  - Venta o alquiler.
+  - Rango de precio.
+  - Número de baños y habitaciones.
+  - Metros cuadrados.
+  - Propiedades que aceptan mascotas.
+- Agregar propiedades a una **lista de favoritos**.
+- Ver su lista de propiedades favoritas.
+
+> 🔒 No puede crear ni editar propiedades.
+
+---
+
+### 🧑‍🤝‍🧑 4. Usuario no autenticado (visitante)
+
+Los usuarios no logueados pueden:
+
+- Navegar por el catálogo de propiedades públicas.
+- Ver detalles básicos de cada propiedad.
+- Registrarse o iniciar sesión para desbloquear funciones personalizadas.
+
+---
+
+## 🧱 Tecnologías Utilizadas
+
+### 🖥️ Frontend
+
+- **Next.js**: Framework React para renderizado SSR.
+- **Tailwind CSS**: Framework de estilos utility-first.
+- **Axios**: Para consumo de la API REST.
+- **React Icons**: Librería de íconos.
+- **Context API**: Para manejo de estados globales como autenticación y propiedades.
+
+### ⚙️ Backend
+
+- **Laravel 10.x**: API RESTful.
+- **Laravel Sanctum**: Autenticación con tokens Bearer.
+- **MySQL (via Laragon)**: Base de datos relacional.
+- **Eloquent ORM**: Interacción con la base de datos.
+- **Middleware personalizado**: Para autorización de acciones según rol.
+- **Validaciones HTTP**: Validación estricta de datos enviados al backend.
+
+---
+
+## 🔐 Seguridad y Autenticación
+
+- Se implementa **autenticación vía Laravel Sanctum**.
+- Todas las rutas sensibles están protegidas con middleware `auth:sanctum`.
+- Los tokens Bearer se deben enviar en cada solicitud autenticada (por ejemplo, crear propiedad, ver favoritos, etc.).
+- El frontend almacena el token de forma segura (por ejemplo, en `localStorage` o `cookies` HttpOnly si se usa SSR).
+
+---
+
+## 📦 Rutas de la API
+
+### ✅ Públicas
+- `POST /api/register`: Registro de usuarios (landlord, seeker).
+- `POST /api/login`: Login de usuario y obtención de token.
+- `GET /api/properties`: Listado público de propiedades.
+- `GET /api/properties/{id}`: Ver detalles de una propiedad específica.
+
+### 🔐 Requieren autenticación (Bearer Token)
+- `GET /api/me`: Obtener datos del usuario autenticado.
+- `POST /api/logout`: Cerrar sesión (revoca token).
+- `POST /api/properties`: Crear propiedad (solo landlord).
+- `GET /api/properties/mine`: Ver propiedades propias (solo landlord).
+- `PUT /api/properties/{id}`: Editar propiedad (landlord o admin).
+- `DELETE /api/properties/{id}`: Eliminar propiedad (landlord dueño o admin).
+- `POST /api/properties/{id}/images`: Subir imágenes de propiedad.
+- `POST /api/favorites`: Agregar a favoritos (solo seeker).
+- `DELETE /api/favorites/{id}`: Quitar de favoritos (solo seeker).
+
+---
+
+## 📁 Estructura del Proyecto
+
+```bash
+/backend        # Laravel API (Laravel + Sanctum)
+  ├── app/
+  ├── routes/
+  └── config/
+
+/frontend       # Next.js + Tailwind
+  ├── components/
+  ├── pages/
+  └── context/
