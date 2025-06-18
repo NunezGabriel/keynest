@@ -1,11 +1,7 @@
 import PropertyDetailView from "@/views/propertyDetail/PropertyDetailView";
 
-const PropertyDetail = () => {
-  return (
-    <div>
-      <PropertyDetailView />
-    </div>
-  );
+const PropertyDetail = ({ params }) => {
+  return <PropertyDetailView id={params.id} />;
 };
 
 export default PropertyDetail;
