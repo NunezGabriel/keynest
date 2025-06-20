@@ -1,12 +1,64 @@
 "use client";
 import React, { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaBed } from "react-icons/fa";
 import UniversalButton from "./UniversalButton";
 
-const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
+const DropdownButton = ({
+  text = "MÁS",
+  type = "mas",
+  onApply,
+  onPetsChange,
+  onAreaChange,
+}) => {
   const [open, setOpen] = useState(false);
-  const [selectedCuartos, setSelectedCuartos] = useState(null);
-  const [selectedBanos, setSelectedBanos] = useState(null);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minArea, setMinArea] = useState("");
+  const [maxArea, setMaxArea] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [petsAllowed, setPetsAllowed] = useState(false);
+  const [selectedTransactions, setSelectedTransactions] = useState([]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState(null);
+
+  const handleApply = () => {
+    switch (type) {
+      case "precio":
+        onApply(minPrice, maxPrice);
+        break;
+      case "tipo":
+        onApply(selectedTypes);
+        break;
+      case "mas":
+        onPetsChange(petsAllowed);
+        onAreaChange(minArea, maxArea);
+        break;
+      case "dormitorios":
+        onApply(selectedBedrooms);
+        break;
+      case "compra":
+        onApply(selectedTransactions);
+        break;
+    }
+    setOpen(false);
+  };
+
+  const togglePropertyType = (type) => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+
+  const toggleTransactionType = (transaction) => {
+    if (selectedTransactions.includes(transaction)) {
+      setSelectedTransactions(
+        selectedTransactions.filter((t) => t !== transaction)
+      );
+    } else {
+      setSelectedTransactions([...selectedTransactions, transaction]);
+    }
+  };
 
   return (
     <div className="relative inline-block text-left">
@@ -19,16 +71,20 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
         } text-base py-2 px-4 rounded-2xl flex items-center gap-2`}
       >
         {text}
-        {type === "mas" && <FaChevronDown size={14} />}
-        {type === "compra" && <FaChevronDown size={14} />}
+        {(type === "mas" || type === "compra") && <FaChevronDown size={14} />}
       </button>
       {open && (
         <div className="absolute z-10 mt-2 rounded-md shadow-lg border border-[#16b4ff] bg-white p-2">
           {type === "mas" && (
             <div className="flex flex-col gap-3">
               <div className="flex gap-2 items-center mb-3">
-                <input type="checkbox" className="h-4 w-4" />
-                <label className="text-sm">Mascotas</label>
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={petsAllowed}
+                  onChange={(e) => setPetsAllowed(e.target.checked)}
+                />
+                <label className="text-sm">Mascotas Permitidas</label>
               </div>
               <div className="space-y-2">
                 <h1 className="text-xs font-light tracking-[1.5px]">
@@ -39,17 +95,21 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
                     type="text"
                     className="flex-1 min-w-0 p-1 border border-gray-300 rounded text-sm"
                     placeholder="Min"
+                    value={minArea}
+                    onChange={(e) => setMinArea(e.target.value)}
                   />
                   <span className="text-sm">-</span>
                   <input
                     type="text"
                     className="flex-1 min-w-0 p-1 border border-gray-300 rounded text-sm"
                     placeholder="Max"
+                    value={maxArea}
+                    onChange={(e) => setMaxArea(e.target.value)}
                   />
                 </div>
               </div>
               <div className="flex justify-end">
-                <UniversalButton text={"ACEPTAR"} />
+                <UniversalButton text={"ACEPTAR"} onClick={handleApply} />
               </div>
             </div>
           )}
@@ -63,17 +123,21 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
                     type="text"
                     className="flex-1 min-w-0 p-1 border border-gray-300 rounded text-sm"
                     placeholder="Min"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
                   />
                   <span className="text-sm">-</span>
                   <input
                     type="text"
                     className="flex-1 min-w-0 p-1 border border-gray-300 rounded text-sm"
                     placeholder="Max"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
                   />
                 </div>
               </div>
               <div className="flex justify-end">
-                <UniversalButton text={"ACEPTAR"} />
+                <UniversalButton text={"ACEPTAR"} onClick={handleApply} />
               </div>
             </div>
           )}
@@ -85,63 +149,58 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
               </h1>
               <div className="flex gap-3">
                 <div className="flex gap-2 items-center mb-3">
-                  <input type="checkbox" className="h-4 w-4" />
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4"
+                    checked={selectedTypes.includes("casa")}
+                    onChange={() => togglePropertyType("casa")}
+                  />
                   <label className="text-sm">Casa</label>
                 </div>
                 <div className="flex gap-2 items-center mb-3">
-                  <input type="checkbox" className="h-4 w-4" />
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4"
+                    checked={selectedTypes.includes("departamento")}
+                    onChange={() => togglePropertyType("departamento")}
+                  />
                   <label className="text-sm">Departamento</label>
                 </div>
               </div>
-
               <div className="flex justify-end">
-                <UniversalButton text={"ACEPTAR"} />
+                <UniversalButton text={"ACEPTAR"} onClick={handleApply} />
               </div>
             </div>
           )}
-
-          {type === "cuartos" && (
-            <div className="flex flex-col gap-3">
-              <h1 className="text-xs font-light tracking-[1.5px]">CUARTOS</h1>
-              <div className="flex">
-                {[1, 2, 3, 4, "+4"].map((option) => (
-                  <div
-                    key={`cuartos-${option}`}
-                    className={`border-[1.5px] border-[#a4a4a4] py-2 px-4 cursor-pointer 
-            ${selectedCuartos === option ? "bg-[#1290CB] text-white" : ""}
-            ${option === 1 ? "rounded-tl-lg rounded-bl-lg" : ""}
-            ${option === "+4" ? "rounded-tr-lg rounded-br-lg" : ""}`}
-                    onClick={() => {
-                      setSelectedCuartos(option);
-                      console.log("Cuartos seleccionados:", option);
-                    }}
+          {type === "dormitorios" && (
+            <div className="flex flex-col gap-3 w-48">
+              <h1 className="text-xs font-light tracking-[1.5px]">
+                SELECCIONE DORMITORIOS
+              </h1>
+              <div className="grid grid-cols-3 gap-2">
+                {[1, 2, 3, 4, 5, "+6"].map((num) => (
+                  <button
+                    key={num}
+                    className={`p-2 rounded-lg flex flex-col items-center ${
+                      selectedBedrooms === num
+                        ? "bg-[#1290CB] text-white"
+                        : "bg-gray-100 hover:bg-gray-200"
+                    }`}
+                    onClick={() => setSelectedBedrooms(num)}
                   >
-                    {option}
-                  </div>
+                    <FaBed className="mb-1" />
+                    <span>{num}</span>
+                  </button>
                 ))}
               </div>
-
-              <h1 className="text-xs font-light tracking-[1.5px]">BAÑOS</h1>
-              <div className="flex">
-                {[1, 2, 3, 4, "+4"].map((option) => (
-                  <div
-                    key={`banos-${option}`}
-                    className={`border-[1.5px] border-[#a4a4a4] py-2 px-4 cursor-pointer 
-            ${selectedBanos === option ? "bg-[#1290CB] text-white" : ""}
-            ${option === 1 ? "rounded-tl-lg rounded-bl-lg" : ""}
-            ${option === "+4" ? "rounded-tr-lg rounded-br-lg" : ""}`}
-                    onClick={() => {
-                      setSelectedBanos(option);
-                      console.log("Baños seleccionados:", option);
-                    }}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex justify-end">
-                <UniversalButton text={"ACEPTAR"} />
+              <button
+                className="text-sm text-blue-500 mt-2 self-start"
+                onClick={() => setSelectedBedrooms(null)}
+              >
+                Limpiar selección
+              </button>
+              <div className="flex justify-end mt-2">
+                <UniversalButton text={"APLICAR"} onClick={handleApply} />
               </div>
             </div>
           )}
@@ -149,19 +208,34 @@ const DropdownButton = ({ text = "MÁS", type = "mas" }) => {
           {type === "compra" && (
             <div className="flex flex-col gap-3">
               <div className="flex gap-2 items-center mb-3">
-                <input type="checkbox" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={selectedTransactions.includes("ambos")}
+                  onChange={() => toggleTransactionType("ambos")}
+                />
                 <label className="text-sm">Ambos</label>
               </div>
               <div className="flex gap-2 items-center mb-3">
-                <input type="checkbox" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={selectedTransactions.includes("compra")}
+                  onChange={() => toggleTransactionType("compra")}
+                />
                 <label className="text-sm">Compra</label>
               </div>
               <div className="flex gap-2 items-center mb-3">
-                <input type="checkbox" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={selectedTransactions.includes("renta")}
+                  onChange={() => toggleTransactionType("renta")}
+                />
                 <label className="text-sm">Renta</label>
               </div>
               <div className="flex justify-end">
-                <UniversalButton text={"ACEPTAR"} />
+                <UniversalButton text={"ACEPTAR"} onClick={handleApply} />
               </div>
             </div>
           )}
