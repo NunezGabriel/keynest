@@ -19,12 +19,18 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // 🔍 Obtener una propiedad por ID
+  // 🔍 Obtener una propiedad por ID (versión final)
   const getProperty = async (id) => {
-    const res = await fetchWithToken(
-      `http://localhost:8000/api/properties/${id}`
-    );
-    return await res.json();
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/properties/details/${id}`
+      );
+      if (!res.ok) throw new Error("Propiedad no encontrada");
+      return await res.json();
+    } catch (error) {
+      console.error("Error fetching property:", error);
+      return { error: error.message };
+    }
   };
 
   // ➕ Crear propiedad (solo para landlords)

@@ -9,10 +9,14 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    const validFiles = selectedFiles.filter(file => file.size <= 5 * 1024 * 1024); // max 5MB
+    const validFiles = selectedFiles.filter(
+      (file) => file.size <= 5 * 1024 * 1024
+    ); // max 5MB
 
     if (validFiles.length < selectedFiles.length) {
-      setError("Algunas imágenes superan el tamaño máximo de 5MB y fueron omitidas.");
+      setError(
+        "Algunas imágenes superan el tamaño máximo de 5MB y fueron omitidas."
+      );
     } else {
       setError("");
     }
@@ -22,7 +26,9 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
   };
 
   const handleRemoveImage = (indexToRemove) => {
-    const updatedFiles = imageFiles.filter((_, index) => index !== indexToRemove);
+    const updatedFiles = imageFiles.filter(
+      (_, index) => index !== indexToRemove
+    );
     onImageSelect(updatedFiles);
   };
 
@@ -48,7 +54,9 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
           ELIJE UN ARCHIVO
         </button>
         <span className="text-sm text-gray-500">
-          {imageFiles.length === 0 ? "No hay archivos seleccionados" : `${imageFiles.length} archivo(s) seleccionado(s)`}
+          {imageFiles.length === 0
+            ? "No hay archivos seleccionados"
+            : `${imageFiles.length} archivo(s) seleccionado(s)`}
         </span>
       </div>
 
@@ -95,12 +103,6 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
 };
 
 export default ImageUpload;
-
-
-
-
-
-
 
 /* "use client";
 import { useState } from "react";
