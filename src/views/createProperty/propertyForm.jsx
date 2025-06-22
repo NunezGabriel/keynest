@@ -7,6 +7,7 @@ import UniversalButton from "@/components/buttons/UniversalButton";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import AddressInput from "@/components/propertyForm/AddressInput";
 
 const PropertyForm = () => {
   const { createProperty } = useProperty();
@@ -180,14 +181,11 @@ const PropertyForm = () => {
           </label>
           <div className="relative">
             <RiSearchLine className="absolute left-3 top-3 text-gray-400" />
-            <input
-              type="text"
-              name="location"
-              placeholder="Ingresa dirección"
+            <AddressInput
               value={formData.location}
-              onChange={handleChange}
-              required
-              className="w-full pl-10 pr-4 py-2 border border-[#1290CB] rounded-lg"
+              onChange={(value) =>
+                setFormData({ ...formData, location: value })
+              }
             />
           </div>
         </div>

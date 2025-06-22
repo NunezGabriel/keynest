@@ -1,4 +1,5 @@
 "use client";
+import PropertyMap from "../propertyForm/PropertyMap";
 
 export default function PropertyDescription({
   title,
@@ -26,11 +27,7 @@ export default function PropertyDescription({
         <p className="text-[#4A4A4A]">
           {location || "Ubicación no especificada"}
         </p>
-        <img
-          src="/map/mapa.png"
-          alt="Mapa"
-          className="w-full max-w-md h-auto rounded-lg shadow-md"
-        />
+        <PropertyMap address={location} />
       </section>
     </section>
   );

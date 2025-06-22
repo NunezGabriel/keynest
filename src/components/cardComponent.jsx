@@ -68,7 +68,7 @@ const CardComponent = ({ type, property }) => {
             </div>
           </div>
 
-          <div>
+          <div className="max-w-[200px]">
             <h1 className="truncate">{location}</h1>
           </div>
 
