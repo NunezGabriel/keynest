@@ -38,7 +38,7 @@ const MyProperties = () => {
         if (estado === "disponible") {
           return property.status === "disponible";
         } else if (estado === "cerradas") {
-          return property.status !== "disponible"; // O puedes usar property.status === "vendido" || property.status === "alquilado"
+          return property.status !== "disponible";
         }
         return true;
       });
