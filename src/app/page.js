@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import HomeGuest from "@/views/dashboard/HomeGuest";
 import HomeSeeker from "@/views/dashboard/HomeSeeker";
 import HomeLandlord from "@/views/dashboard/HomeLandlord";
+import HomeAdmin from "@/views/dashboard/HomeAdmin";
 
 const Home = () => {
   const { user, loading } = useAuth();
@@ -32,6 +33,12 @@ const Home = () => {
         <>
           <Navbar type="landlordLog" />
           <HomeLandlord />
+        </>
+      )}
+      {user?.user_type === "admin" && (
+        <>
+          <Navbar type="landlordLog" />
+          <HomeAdmin />
         </>
       )}
       <Footer />
