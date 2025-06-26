@@ -37,7 +37,7 @@ const Home = () => {
       )}
       {user?.user_type === "admin" && (
         <>
-          <Navbar type="landlordLog" />
+          <Navbar type="admin" />
           <HomeAdmin />
         </>
       )}

@@ -4,6 +4,7 @@ import { ImSpinner2 } from "react-icons/im";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaUserAlt, FaHeart } from "react-icons/fa";
 import { FaHouse } from "react-icons/fa6";
+import { FaGears } from "react-icons/fa6";
 
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
@@ -13,6 +14,8 @@ import { LuPencil } from "react-icons/lu";
 const iconMap = {
   "CERRAR SESION": IoLogOutOutline,
   "AGREGAR PROPIEDAD": IoMdAdd,
+  GESTIONAR: FaGears,
+  AGREGAR: IoMdAdd,
   "EDITAR PROPIEDAD": LuPencil,
   "BUSCAR PROPIEDAD": IoSearchOutline,
   "REGISTRAR NUEVA PROPIEDAD": FiPlusCircle,
@@ -49,6 +52,8 @@ const UniversalButton = ({
       "bg-white text-[#1290CB] border border-[#1290CB] hover:bg-[#f0f8ff]  focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
     ghost:
       "bg-transparent text-[#1290CB] hover:text-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
+    rojito:
+      "bg-[#DF1B14] text-[#f0f8ff] hover:text-[#f0f8ff] focus:ring-2 focus:ring-[#DF1B14] focus:ring-offset-2",
   };
 
   const sizes = {

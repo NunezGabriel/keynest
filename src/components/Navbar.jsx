@@ -121,6 +121,30 @@ export default function Navbar({ type }) {
                 href={"/aunth/login"}
               />
             )}
+            {type === "admin" && (
+              <UniversalButton
+                text={"GESTIONAR"}
+                color="primary"
+                iconClassName={"GESTIONAR"}
+                href={"/main-board"}
+              />
+            )}
+
+            {type === "admin" && (
+              <UniversalButton
+                text={"PERFIL"}
+                color="primary"
+                iconClassName={"PERFIL"}
+              />
+            )}
+            {type === "admin" && (
+              <UniversalButton
+                text={"CERRAR SESION"}
+                color="secondary"
+                iconClassName="CERRAR SESION"
+                onClick={logout}
+              />
+            )}
           </div>
 
           {/* Menú móvil */}
