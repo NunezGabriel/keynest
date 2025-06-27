@@ -25,7 +25,7 @@ const AdminOptions = () => {
           <h1 className="text-2xl">Gestionar Propiedades</h1>
         </Link>
         <Link
-          href={"/"}
+          href={"/main-board/userManagement"}
           className="shadow-lg w-[330px] h-[380px] rounded-lg flex flex-col gap-12 justify-center items-center transition-transform duration-300 ease-in-out hover:-translate-y-2 bg-white"
         >
           <FaUser size={120} color="#1290CB" />

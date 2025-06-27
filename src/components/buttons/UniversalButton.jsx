@@ -54,6 +54,8 @@ const UniversalButton = ({
       "bg-transparent text-[#1290CB] hover:text-[#16b4ff] focus:ring-2 focus:ring-[#1290CB] focus:ring-offset-2",
     rojito:
       "bg-[#DF1B14] text-[#f0f8ff] hover:text-[#f0f8ff] focus:ring-2 focus:ring-[#DF1B14] focus:ring-offset-2",
+    amarillito:
+      "bg-[#ffc107] text-[#f0f8ff] hover:text-[#f0f8ff] focus:ring-2 focus:ring-[#ffc107] focus:ring-offset-2",
   };
 
   const sizes = {

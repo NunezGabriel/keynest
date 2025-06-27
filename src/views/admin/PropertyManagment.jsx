@@ -8,7 +8,7 @@ const PropertyManagementView = () => {
   return (
     <div>
       <Navbar type={"admin"} />
-      <FillterAdminComponent />
+      <FillterAdminComponent type={"propertyFillter"} />
       <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-20 mb-24 mt-16 p-4 ">
         {properties.map((property, index) => (
           <CardProperties key={index} />
