@@ -32,7 +32,7 @@ const AdminOptions = () => {
           <h1 className="text-2xl">Gestionar Usuarios</h1>
         </Link>
         <Link
-          href={"/"}
+          href={"/main-board/stats"}
           className="shadow-lg w-[330px] h-[380px] rounded-lg flex flex-col gap-12 justify-center items-center transition-transform duration-300 ease-in-out hover:-translate-y-2 bg-white"
         >
           <ImStatsBars size={120} color="#1290CB" />

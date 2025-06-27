@@ -1,6 +1,7 @@
 import FillterAdminComponent from "@/components/mainBoard/fillterAdminComponent";
 import Navbar from "@/components/Navbar";
 import CardUsers from "@/components/cardsAdmin/cardUsers";
+import Footer from "@/components/footer";
 
 const UserManagementView = () => {
   const properties = [1, 2, 3, 4, 5, 6];
@@ -13,6 +14,7 @@ const UserManagementView = () => {
           <CardUsers key={index} />
         ))}
       </section>
+      <Footer />
     </div>
   );
 };
