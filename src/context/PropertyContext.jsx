@@ -71,7 +71,13 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // ❤️ Obtener propiedades favoritas
+  // ⭐❤️ Nueva función para admins  - todas las favoritas
+  const getAllFavorites = async () => {
+    const res = await fetchWithToken("http://localhost:8000/api/favorites/all");
+    return await res.json();
+  };
+
+  // ❤️ Obtener propiedades favoritas por usuario
   const getFavoriteProperties = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/favorites");
     return await res.json();
@@ -127,6 +133,7 @@ export const PropertyProvider = ({ children }) => {
         addFavorite,
         removeFavorite,
         isPropertyFavorite,
+        getAllFavorites,
       }}
     >
       {children}
