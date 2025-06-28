@@ -144,6 +144,20 @@ export const AuthProvider = ({ children }) => {
     }
     return await res.json();
   };
+  const updateUser = async (id, data) => {
+    const res = await fetchWithToken(`http://localhost:8000/api/users/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      console.error("Error actualizando usuario:", res.status);
+      return null;
+    }
+
+    return await res.json();
+  };
 
   return (
     <AuthContext.Provider
@@ -157,6 +171,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         getUsers,
         deleteUser,
+        updateUser,
       }}
     >
       {children}
