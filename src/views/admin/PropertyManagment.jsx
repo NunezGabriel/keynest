@@ -9,12 +9,14 @@ import { useProperty } from "@/context/PropertyContext";
 const PropertyManagementView = () => {
   const { getProperties, deleteProperty } = useProperty();
   const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
 
   // Cargar propiedades reales al montar
   useEffect(() => {
     const fetchProperties = async () => {
       const data = await getProperties();
       setProperties(data);
+      setFilteredProperties(data);
     };
 
     fetchProperties();
@@ -27,18 +29,28 @@ const PropertyManagementView = () => {
       setProperties((prev) =>
         prev.filter((property) => property.property_id !== id)
       );
+      setFilteredProperties((prev) =>
+        prev.filter((property) => property.property_id !== id)
+      );
     } else {
       alert("Error eliminando propiedad");
     }
   };
 
+  const handleSearch = (term) => {
+    const filtered = properties.filter((property) =>
+      property.location.toLowerCase().includes(term.toLowerCase())
+    );
+    setFilteredProperties(filtered);
+  };
+
   return (
     <div>
       <Navbar type="admin" />
-      <FillterAdminComponent type={"propertyFillter"} />
+      <FillterAdminComponent type={"propertyFillter"} onSearch={handleSearch} />
 
       <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-20 mb-24 mt-16 p-4">
-        {properties.map((property) => (
+        {filteredProperties.map((property) => (
           <CardProperties
             key={property.property_id}
             property={property}

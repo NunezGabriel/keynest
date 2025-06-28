@@ -13,6 +13,19 @@ const UserManagementView = () => {
   const [editingUser, setEditingUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [creatingUser, setCreatingUser] = useState(false);
+
+  const handleSearch = (term) => {
+    setFilteredUsers(
+      users.filter(
+        (user) =>
+          user.name.toLowerCase().includes(term.toLowerCase()) ||
+          user.email.toLowerCase().includes(term.toLowerCase())
+      )
+    );
+  };
+
   const fetchUsers = async () => {
     const res = await fetch("http://localhost:8000/api/users", {
       headers: {
@@ -21,6 +34,7 @@ const UserManagementView = () => {
     });
     const data = await res.json();
     setUsers(data);
+    setFilteredUsers(data);
   };
 
   useEffect(() => {
@@ -36,10 +50,14 @@ const UserManagementView = () => {
   return (
     <div>
       <Navbar type={"admin"} />
-      <FillterAdminComponent type={"userFillter"} />
+      <FillterAdminComponent
+        type={"userFillter"}
+        onSearch={handleSearch}
+        onAdd={() => setCreatingUser(true)}
+      />
 
       <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-20 mb-24 mt-16 p-4 ">
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <CardUsers
             key={user.id}
             user={user}
@@ -75,9 +93,15 @@ const UserManagementView = () => {
 
               if (res.ok) {
                 const updatedUser = await res.json();
+
                 setUsers((prev) =>
                   prev.map((u) => (u.id === updatedUser.id ? updatedUser : u))
                 );
+
+                setFilteredUsers((prev) =>
+                  prev.map((u) => (u.id === updatedUser.id ? updatedUser : u))
+                );
+
                 setShowModal(false);
               } else {
                 alert("Error al actualizar el usuario");
