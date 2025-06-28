@@ -126,9 +126,38 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
+  // Dentro del AuthProvider, antes del return
+  const getUsers = async () => {
+    const res = await fetchWithToken("http://localhost:8000/api/users");
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data;
+  };
+
+  const deleteUser = async (id) => {
+    const res = await fetchWithToken(`http://localhost:8000/api/users/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      console.error("Error eliminando usuario:", res.status);
+      return null;
+    }
+    return await res.json();
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, token, login, register, logout, fetchWithToken, loading }}
+      value={{
+        user,
+        token,
+        login,
+        register,
+        logout,
+        fetchWithToken,
+        loading,
+        getUsers,
+        deleteUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
