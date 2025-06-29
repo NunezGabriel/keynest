@@ -159,6 +159,21 @@ export const AuthProvider = ({ children }) => {
     return await res.json();
   };
 
+  const createUser = async (data) => {
+    const res = await fetchWithToken("http://localhost:8000/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      console.error("Error creando usuario:", res.status);
+      return null;
+    }
+
+    return await res.json();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -172,6 +187,7 @@ export const AuthProvider = ({ children }) => {
         getUsers,
         deleteUser,
         updateUser,
+        createUser,
       }}
     >
       {children}
