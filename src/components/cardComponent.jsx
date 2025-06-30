@@ -12,8 +12,10 @@ import { BsBoundingBox } from "react-icons/bs";
 import { PiPawPrint } from "react-icons/pi";
 import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
+import { FiRefreshCw } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
-const CardComponent = ({ type, property }) => {
+const CardComponent = ({ type, property, onClose, onReopen, onDelete }) => {
   const {
     is_rent = false,
     price = 0,
@@ -92,23 +94,63 @@ const CardComponent = ({ type, property }) => {
           </div>
         </section>
       </Link>
-
       {type === "landlord" && (
         <div className="bg-[#005F8C] flex py-3 px-6 text-white justify-between rounded-b-lg">
-          <Link
-            href={`/my-properties/edit/${property?.property_id || "#"}`}
-            className="flex items-center gap-2"
-          >
-            <RiEditBoxFill size={30} color="white" />
-            <p>EDITAR</p>
-          </Link>
-          <Link
-            href={`/my-properties/close/${property?.property_id || "#"}`}
-            className="flex items-center gap-2"
-          >
-            <FaSquareXmark size={30} color="white" />
-            <p>CERRAR</p>
-          </Link>
+          {/* Botón Editar (solo visible cuando status es 'disponible') */}
+          {property.status === "disponible" && (
+            <Link
+              href={`/my-properties/edit/${property?.property_id}`}
+              className="flex items-center gap-2"
+            >
+              <RiEditBoxFill size={30} color="white" />
+              <p>EDITAR</p>
+            </Link>
+          )}
+
+          {/* Botones Dinámicos */}
+          {property.status === "disponible" ? (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                if (confirm("¿Cerrar esta propiedad?")) {
+                  onClose();
+                }
+              }}
+              className="flex items-center gap-2"
+            >
+              <FaSquareXmark size={30} color="white" />
+              <p>CERRAR</p>
+            </button>
+          ) : (
+            <div className="flex gap-4 ml-auto">
+              {" "}
+              {/* ml-auto para alinear a la derecha */}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (confirm("¿Reabrir esta propiedad?")) {
+                    onReopen();
+                  }
+                }}
+                className="flex items-center gap-2"
+              >
+                <FiRefreshCw size={24} color="white" />
+                <p>RESTABLECER</p>
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (confirm("¿Eliminar propiedad permanentemente?")) {
+                    onDelete();
+                  }
+                }}
+                className="flex items-center gap-2"
+              >
+                <RiDeleteBinLine size={24} color="white" />
+                <p>ELIMINAR</p>
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

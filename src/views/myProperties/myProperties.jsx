@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import UniversalButton from "@/components/buttons/UniversalButton";
 import CardComponent from "@/components/cardComponent";
@@ -8,28 +7,31 @@ import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
 
 const MyProperties = () => {
-  const { getMyProperties } = useProperty();
-  const { user } = useAuth();
+  const { getMyProperties, closeProperty, reopenProperty, deleteProperty } =
+    useProperty();
+  const { user, token, loading: authLoading } = useAuth(); // 👈 Obtén token y authLoading
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [estado, setEstado] = useState("disponible");
 
-  // Obtener propiedades del backend
+  // Obtener propiedades solo cuando el AuthContext esté listo
   useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        const data = await getMyProperties();
-        setProperties(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error obteniendo propiedades:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchProperties();
-  }, [getMyProperties]);
+    if (!authLoading && token) {
+      // 👈 Espera a que el auth esté cargado
+      const fetchProperties = async () => {
+        try {
+          const data = await getMyProperties();
+          setProperties(data);
+        } catch (error) {
+          console.error("Error obteniendo propiedades:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchProperties();
+    }
+  }, [getMyProperties, authLoading, token]); // 👈 Agrega dependencias
 
   // Filtrar propiedades según el estado seleccionado
   useEffect(() => {
@@ -38,7 +40,7 @@ const MyProperties = () => {
         if (estado === "disponible") {
           return property.status === "disponible";
         } else if (estado === "cerradas") {
-          return property.status !== "disponible";
+          return property.status === "cerrada"; // 👈 Asegúrate que coincida con tu ENUM
         }
         return true;
       });
@@ -46,6 +48,19 @@ const MyProperties = () => {
     }
   }, [estado, properties]);
 
+  // Pantalla de carga mientras AuthContext se inicializa
+  if (authLoading) {
+    return (
+      <div>
+        <Navbar type={"landlordLog"} />
+        <div className="mt-16 mx-auto max-w-[1227px] text-center">
+          Verificando sesión...
+        </div>
+      </div>
+    );
+  }
+
+  // Pantalla de carga mientras se obtienen las propiedades
   if (loading) {
     return (
       <div>
@@ -101,7 +116,37 @@ const MyProperties = () => {
               <CardComponent
                 key={property.property_id}
                 type={"landlord"}
-                property={property} // Pasamos los datos reales de la propiedad
+                property={property}
+                onClose={() =>
+                  closeProperty(property.property_id).then(() => {
+                    // Actualiza el estado local sin recargar la página
+                    setProperties((prev) =>
+                      prev.map((p) =>
+                        p.property_id === property.property_id
+                          ? { ...p, status: "cerrada" }
+                          : p
+                      )
+                    );
+                  })
+                }
+                onReopen={() =>
+                  reopenProperty(property.property_id).then(() => {
+                    setProperties((prev) =>
+                      prev.map((p) =>
+                        p.property_id === property.property_id
+                          ? { ...p, status: "disponible" }
+                          : p
+                      )
+                    );
+                  })
+                }
+                onDelete={() =>
+                  deleteProperty(property.property_id).then(() => {
+                    setProperties((prev) =>
+                      prev.filter((p) => p.property_id !== property.property_id)
+                    );
+                  })
+                }
               />
             ))
           ) : (

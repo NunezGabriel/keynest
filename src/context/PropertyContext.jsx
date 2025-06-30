@@ -71,6 +71,28 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
+  // Cerrar propiedad
+  const closeProperty = async (id) => {
+    const res = await fetchWithToken(
+      `http://localhost:8000/api/properties/${id}/close`,
+      {
+        method: "PATCH",
+      }
+    );
+    return await res.json();
+  };
+
+  // Reabrir propiedad
+  const reopenProperty = async (id) => {
+    const res = await fetchWithToken(
+      `http://localhost:8000/api/properties/${id}/reopen`,
+      {
+        method: "PATCH",
+      }
+    );
+    return await res.json();
+  };
+
   // ⭐❤️ Nueva función para admins  - todas las favoritas
   const getAllFavorites = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/favorites/all");
@@ -128,6 +150,8 @@ export const PropertyProvider = ({ children }) => {
         createProperty,
         updateProperty,
         deleteProperty,
+        closeProperty,
+        reopenProperty,
         // Funciones de favoritos
         getFavoriteProperties,
         addFavorite,
