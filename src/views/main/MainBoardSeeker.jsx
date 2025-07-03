@@ -17,6 +17,7 @@ const MainBoardSeeker = () => {
   const [favoriteIds, setFavoriteIds] = useState([]);
 
   // Obtener todas las propiedades y favoritos en paralelo
+  // Modifica la función fetchData:
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
@@ -27,12 +28,17 @@ const MainBoardSeeker = () => {
           : Promise.resolve([]),
       ]);
 
+      // Filtra solo propiedades disponibles
+      const availableProperties = propertiesData.filter(
+        (prop) => prop.status === "disponible"
+      );
+
       const extractedFavoriteIds = favoritesData.map(
         (fav) => fav.property_id || fav?.property?.property_id || fav.id
       );
 
-      setProperties(propertiesData);
-      setFilteredProperties(propertiesData);
+      setProperties(availableProperties);
+      setFilteredProperties(availableProperties);
       setFavoriteIds(extractedFavoriteIds);
     } catch (error) {
       console.error("Error obteniendo datos:", error);

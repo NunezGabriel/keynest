@@ -15,12 +15,17 @@ const MainBoardNoLogged = () => {
 
   // Obtener todas las propiedades del backend
   useEffect(() => {
+    // En el useEffect donde se obtienen las propiedades:
     const fetchProperties = async () => {
       try {
         setLoading(true);
         const data = await getProperties();
-        setProperties(data);
-        setFilteredProperties(data);
+        // Filtra solo propiedades disponibles
+        const availableProperties = data.filter(
+          (prop) => prop.status === "disponible"
+        );
+        setProperties(availableProperties);
+        setFilteredProperties(availableProperties);
       } catch (error) {
         console.error("Error obteniendo propiedades:", error);
       } finally {
