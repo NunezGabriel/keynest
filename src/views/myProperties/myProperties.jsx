@@ -9,7 +9,7 @@ import { useAuth } from "@/context/AuthContext";
 const MyProperties = () => {
   const { getMyProperties, closeProperty, reopenProperty, deleteProperty } =
     useProperty();
-  const { user, token, loading: authLoading } = useAuth(); // 👈 Obtén token y authLoading
+  const { user, token, loading: authLoading, updateProperty } = useAuth(); // 👈 Obtén token y authLoading
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +47,14 @@ const MyProperties = () => {
       setFilteredProperties(filtered);
     }
   }, [estado, properties]);
+
+  const handleEditProperty = (updatedProperty) => {
+    setProperties((prev) =>
+      prev.map((p) =>
+        p.property_id === updatedProperty.property_id ? updatedProperty : p
+      )
+    );
+  };
 
   // Pantalla de carga mientras AuthContext se inicializa
   if (authLoading) {
@@ -147,6 +155,7 @@ const MyProperties = () => {
                     );
                   })
                 }
+                onEdit={handleEditProperty}
               />
             ))
           ) : (
