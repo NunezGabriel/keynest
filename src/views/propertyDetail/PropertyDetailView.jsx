@@ -7,6 +7,8 @@ import ImageCarousel from "@/components/propertyDetails/ImageCarousel";
 import PropertyDescription from "@/components/propertyDetails/PropertyDescription";
 import PropertySpecs from "@/components/propertyDetails/PropertySpecs";
 import ContactBox from "@/components/propertyDetails/ContactBox";
+import ContactBoxSeeker from "@/components/propertyDetails/ContactBoxSeeker";
+import ContactBoxLandlord from "@/components/propertyDetails/ContactBoxLandlord";
 import { useEffect, useState } from "react";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
@@ -79,7 +81,9 @@ export default function PropertyDetailView({ id }) {
           </div>
           <div className="w-full md:w-[280px] flex justify-center md:justify-end items-center">
             <div className="w-full max-w-xs">
-              <ContactBox />
+              {!user && <ContactBox />}
+              {user?.user_type === "seeker" && <ContactBoxSeeker />}
+              {user?.user_type === "landlord" && <ContactBoxLandlord />}
             </div>
           </div>
         </div>

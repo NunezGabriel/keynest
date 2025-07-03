@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import React, { useState } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-const AnuncioCard = () => {
+const ContactBoxSeeker = () => {
   const [favorito, setFavorito] = useState(false);
 
   const manejarFavorito = () => {
@@ -13,7 +13,7 @@ const AnuncioCard = () => {
       <button className="bg-[#1290CB] hover:bg-[#0d7cb0] text-white rounded-lg px-4 py-2 text-sm w-full whitespace-nowrap transition-colors duration-200">
         CONTACTAR AL ANUNCIANTE
       </button>
-      <div 
+      <div
         className="flex items-center justify-center cursor-pointer mt-3"
         onClick={manejarFavorito}
       >
@@ -28,4 +28,4 @@ const AnuncioCard = () => {
   );
 };
 
-export default AnuncioCard;
+export default ContactBoxSeeker;
