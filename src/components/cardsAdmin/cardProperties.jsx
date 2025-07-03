@@ -12,12 +12,12 @@ const CardProperties = ({ property, onDelete }) => {
         <h1 className="max-w-[300px] text-2xl truncate">{property.title}</h1>
         <span
           className={`px-3 py-1 rounded-lg ${
-            property.status === "closed"
-              ? "bg-[#F8CAC8] text-[#DF1B14]"
+            property.status === "cerrada"
+              ? "bg-[#ffdbab] text-[#aa8000]"
               : "bg-[#C8F8CB] text-[#2A8622]"
           }`}
         >
-          {property.status === "closed" ? "cerrada" : "disponible"}
+          {property.status === "cerrada" ? "cerrada" : "disponible"}
         </span>
       </div>
 
