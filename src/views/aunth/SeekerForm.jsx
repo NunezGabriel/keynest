@@ -102,7 +102,7 @@ const LandlordForm = () => {
             </div>
 
             <div className="mx-auto mt-3">
-              <UniversalButton text={"CREAR CUENTA"} />
+              <UniversalButton text={"CREAR CUENTA"} type="submit" />
             </div>
           </form>
         </div>
