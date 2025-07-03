@@ -6,13 +6,13 @@ const ContactBoxLandlord = () => {
       <h1 className="text-xl font-bold mb-4 whitespace-nowrap">
         Información de Contacto
       </h1>
+      <div>
+        <div className="text-[#1290CB]">Nombre</div>
+        <div className="text-black">gabriel nunez</div>
+      </div>
       <div className="mb-4">
         <div className="text-[#1290CB]">Correo</div>
         <div className="text-black">gabriel@mail.com</div>
-      </div>
-      <div>
-        <div className="text-[#1290CB]">Teléfono</div>
-        <div className="text-black">999444333</div>
       </div>
     </div>
   );

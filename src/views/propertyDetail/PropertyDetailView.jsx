@@ -82,7 +82,9 @@ export default function PropertyDetailView({ id }) {
           <div className="w-full md:w-[280px] flex justify-center md:justify-end items-center">
             <div className="w-full max-w-xs">
               {!user && <ContactBox />}
-              {user?.user_type === "seeker" && <ContactBoxSeeker />}
+              {user?.user_type === "seeker" && (
+                <ContactBoxSeeker propertyId={property.property_id} />
+              )}
               {user?.user_type === "landlord" && <ContactBoxLandlord />}
             </div>
           </div>

@@ -129,18 +129,29 @@ export const PropertyProvider = ({ children }) => {
   };
 
   // ❤️ Verificar si una propiedad es favorita
+  // En tu PropertyContext.js
   const isPropertyFavorite = async (propertyId) => {
-    if (!user) return false;
+    if (!user) return { isFavorite: false, id: null };
 
     try {
       const favorites = await getFavoriteProperties();
-      return favorites.some((fav) => fav.property?.property_id === propertyId);
+      console.log("Favoritos recibidos:", favorites); // Para debug
+
+      const favorite = favorites.find(
+        (fav) =>
+          fav.property_id === propertyId ||
+          (fav.property && fav.property.property_id === propertyId)
+      );
+
+      return {
+        isFavorite: !!favorite,
+        id: favorite?.favorite_id || null, // Asegúrate que esto coincida con tu respuesta
+      };
     } catch (error) {
       console.error("Error verificando favorito:", error);
-      return false;
+      return { isFavorite: false, id: null };
     }
   };
-
   return (
     <PropertyContext.Provider
       value={{
