@@ -152,6 +152,40 @@ export const PropertyProvider = ({ children }) => {
       return { isFavorite: false, id: null };
     }
   };
+
+  const sendMessage = async (propertyId, content) => {
+    const res = await fetchWithToken("http://localhost:8000/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ property_id: propertyId, content }),
+    });
+    return await res.json();
+  };
+
+  const getMessages = async (propertyId) => {
+    const res = await fetchWithToken(
+      `http://localhost:8000/api/messages/${propertyId}`
+    );
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.error || "Error al obtener mensajes");
+    }
+
+    const data = await res.json();
+    console.log("Mensajes recibidos:", data); // Para debug
+    return data;
+  };
+
+  const deleteMessage = async (messageId) => {
+    const res = await fetchWithToken(
+      `http://localhost:8000/api/messages/${messageId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    return await res.json();
+  };
   return (
     <PropertyContext.Provider
       value={{
@@ -169,6 +203,10 @@ export const PropertyProvider = ({ children }) => {
         removeFavorite,
         isPropertyFavorite,
         getAllFavorites,
+        // Enviar y obtener mensajes
+        sendMessage,
+        getMessages,
+        deleteMessage,
       }}
     >
       {children}

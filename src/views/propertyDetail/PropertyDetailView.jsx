@@ -85,7 +85,9 @@ export default function PropertyDetailView({ id }) {
               {user?.user_type === "seeker" && (
                 <ContactBoxSeeker propertyId={property.property_id} />
               )}
-              {user?.user_type === "landlord" && <ContactBoxLandlord />}
+              {user?.user_type === "landlord" && (
+                <ContactBoxLandlord propertyId={property.property_id} />
+              )}
             </div>
           </div>
         </div>

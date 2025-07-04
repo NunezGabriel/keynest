@@ -12,7 +12,9 @@ const ContactBoxSeeker = ({ propertyId }) => {
     addFavorite,
     removeFavorite,
     getFavoriteProperties,
+    sendMessage,
   } = useProperty();
+  const [message, setMessage] = useState("");
   const [favoriteState, setFavoriteState] = useState({
     isFavorite: false,
     favoriteId: null,
@@ -92,6 +94,18 @@ const ContactBoxSeeker = ({ propertyId }) => {
     }
   };
 
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    try {
+      await sendMessage(propertyId, message);
+      setMessage("");
+      alert("Mensaje enviado con éxito");
+    } catch (error) {
+      console.error("Error enviando mensaje:", error);
+      alert("Error al enviar el mensaje");
+    }
+  };
+
   if (favoriteState.loading) {
     return (
       <div className="flex items-center justify-center">
@@ -124,24 +138,28 @@ const ContactBoxSeeker = ({ propertyId }) => {
       <div className="bg-white rounded-lg shadow-md w-full max-w-sm mx-auto text-center">
         <div>
           <div className="text-[#1290CB]">Nombre</div>
-          <div className="text-black">gabriel nunez</div>
+          <div className="text-black">{user.name}</div>
         </div>
         <div className="mb-4">
           <div className="text-[#1290CB]">Correo</div>
-          <div className="text-black">gabriel@mail.com</div>
+          <div className="text-black">{user.email}</div>
         </div>
       </div>
-      <form action="" className="">
+      <form onSubmit={handleSendMessage}>
         <textarea
-          name="mensaje"
-          placeholder="Envia un mensaje al propietario"
-          // value={""}
-          // onChange={""}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Envía un mensaje al propietario"
           required
           rows={4}
-          className="w-full border border-[#1290CB] p-2 rounded-lg"
+          className="w-full border border-[#1290CB] p-2 rounded-lg mb-2"
         />
-        <UniversalButton type="submit" text={"Enviar mensaje"} />
+        <button
+          type="submit"
+          className="bg-[#1290CB] hover:bg-[#0d7cb0] text-white rounded-lg px-4 py-2 text-sm w-full"
+        >
+          Enviar mensaje
+        </button>
       </form>
     </div>
   );
