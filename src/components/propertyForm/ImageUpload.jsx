@@ -103,35 +103,3 @@ const ImageUpload = ({ onImageSelect, imageFiles = [] }) => {
 };
 
 export default ImageUpload;
-
-/* "use client";
-import { useState } from "react";
-
-const ImageUpload = ({ onImageSelect }) => {
-  const [preview, setPreview] = useState(null);
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      onImageSelect(file);
-    }
-  };
-
-  return (
-    <div className="flex flex-col items-start gap-2">
-      <label className="text-sm font-medium">Sube una imagen:</label>
-      <input type="file" onChange={handleFileChange} />
-      {preview && (
-        <img
-          src={preview}
-          alt="preview"
-          className="w-40 h-40 object-cover mt-2 rounded"
-        />
-      )}
-    </div>
-  );
-};
-
-export default ImageUpload;
- */
