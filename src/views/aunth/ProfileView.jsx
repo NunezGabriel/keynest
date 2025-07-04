@@ -3,7 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 
 const ProfileView = () => {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -29,10 +29,26 @@ const ProfileView = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para actualizar el perfil
-    setIsEditing(false);
+
+    try {
+      const updated = await updateUser(user.id, {
+        name: formData.name,
+        email: formData.email,
+      });
+
+      if (updated) {
+        alert("Perfil actualizado correctamente");
+        localStorage.setItem("user", JSON.stringify(updated));
+        setIsEditing(false);
+        // Refrescar el estado local
+        location.reload(); // o setUser(updated) si usas context
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error al actualizar el perfil");
+    }
   };
 
   if (!user) {
