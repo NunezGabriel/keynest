@@ -18,6 +18,7 @@ export default function PropertyDetailView({ id }) {
   const { user } = useAuth();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
+  const backendURL = "http://localhost:8000";
 
   useEffect(() => {
     const fetchPropertyData = async () => {
@@ -76,7 +77,15 @@ export default function PropertyDetailView({ id }) {
         <div className="bg-[#F2F0F0] rounded-xl p-4 w-full max-w-[1500px] mx-auto flex flex-col md:flex-row gap-4">
           <div className="w-full md:flex-1 min-h-[240px]">
             <div className="aspect-video">
-              <ImageCarousel />
+              <ImageCarousel
+                imageUrls={
+                  property.images?.map((img) =>
+                    img.image_url.startsWith("http")
+                      ? img.image_url
+                      : backendURL + img.image_url
+                  ) || []
+                }
+              />
             </div>
           </div>
           <div className="w-full md:w-[280px] flex justify-center md:justify-end items-center">

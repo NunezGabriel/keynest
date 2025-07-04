@@ -11,7 +11,7 @@ import AddressInput from "@/components/propertyForm/AddressInput";
 
 const PropertyForm = () => {
   const { createProperty } = useProperty();
-  const { user } = useAuth();
+  const { user, fetchWithToken } = useAuth();
   const router = useRouter();
 
   const [mode, setMode] = useState("rent"); // 'rent' o 'sell'
@@ -116,9 +116,24 @@ const PropertyForm = () => {
               : null
             : null, // <-- Esto es lo nuevo que agregamos
       };
+      const createdProperty = await createProperty(propertyToSend);
+
+      if (imageFiles.length > 0 && createdProperty?.property_id) {
+        const formDataImages = new FormData();
+        imageFiles.slice(0, 3).forEach((file) => {
+          formDataImages.append("images[]", file);
+        });
+
+        await fetchWithToken(
+          `http://localhost:8000/api/properties/${createdProperty.property_id}/images`,
+          {
+            method: "POST",
+            body: formDataImages,
+          }
+        );
+      }
 
       // Enviar al backend
-      const createdProperty = await createProperty(propertyToSend);
 
       console.log("Propiedad creada:", createdProperty);
       alert(`Propiedad registrada exitosamente!`);
@@ -370,7 +385,7 @@ const PropertyForm = () => {
         </div>
 
         {/* Componente de imágenes (comentado por ahora) */}
-        {/* <ImageUpload onImageSelect={setImageFiles} imageFiles={imageFiles} /> */}
+        <ImageUpload onImageSelect={setImageFiles} imageFiles={imageFiles} />
 
         <div className="flex justify-center">
           <UniversalButton

@@ -2,29 +2,33 @@
 import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const images = [
+// Imagen por defecto
+const defaultImages = [
   "/images/house1.jpg",
   "/images/house2.jpg",
   "/images/house3.jpg",
 ];
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ imageUrls = [] }) {
+  const imagesToShow = imageUrls.length > 0 ? imageUrls : defaultImages;
   const [current, setCurrent] = useState(0);
 
   const prev = () => {
-    setCurrent((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrent(
+      (prevIndex) => (prevIndex - 1 + imagesToShow.length) % imagesToShow.length
+    );
   };
 
   const next = () => {
-    setCurrent((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrent((prevIndex) => (prevIndex + 1) % imagesToShow.length);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // 5 seconds
+      setCurrent((prevIndex) => (prevIndex + 1) % imagesToShow.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [imagesToShow.length]);
 
   return (
     <div className="relative flex flex-col items-center py-6 overflow-hidden">
@@ -34,16 +38,14 @@ export default function ImageCarousel() {
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
-          {images.map((src, idx) => (
+          {imagesToShow.map((src, idx) => (
             <img
               key={idx}
               src={src}
               alt={`Propiedad ${idx + 1}`}
-              className="w-full flex-shrink-0"
+              className="w-full flex-shrink-0 object-cover"
               onError={(e) => {
-                console.error(`Error loading image: ${src}`);
-                e.target.style.backgroundColor = "#f3f4f6";
-                e.target.style.objectFit = "contain";
+                e.target.src = "/images/house1.jpg"; // fallback por si falla
               }}
             />
           ))}
@@ -64,7 +66,7 @@ export default function ImageCarousel() {
 
       {/* Indicators */}
       <div className="flex justify-center gap-2 mt-4">
-        {images.map((_, idx) => (
+        {imagesToShow.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
@@ -78,4 +80,3 @@ export default function ImageCarousel() {
     </div>
   );
 }
-
