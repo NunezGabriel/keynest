@@ -75,6 +75,7 @@ export default function Navbar({ type }) {
                 text={"PERFIL"}
                 color="primary"
                 iconClassName={"PERFIL"}
+                href={"/profile"}
               />
             )}
 
@@ -101,6 +102,7 @@ export default function Navbar({ type }) {
                 text={"PERFIL"}
                 color="primary"
                 iconClassName={"PERFIL"}
+                href={"/profile"}
               />
             )}
 
@@ -135,6 +137,7 @@ export default function Navbar({ type }) {
                 text={"PERFIL"}
                 color="primary"
                 iconClassName={"PERFIL"}
+                href={"/profile"}
               />
             )}
             {type === "admin" && (
