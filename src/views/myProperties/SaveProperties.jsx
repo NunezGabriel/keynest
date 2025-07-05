@@ -100,7 +100,7 @@ const SaveProperties = () => {
             >
               FAVORITAS
             </button>
-            <button
+            {/* <button
               className={`px-4 py-2 font-bold ${
                 estado === "CONTACTADAS"
                   ? "text-[#1290CB] border-b-2 border-[#1290CB]"
@@ -109,7 +109,7 @@ const SaveProperties = () => {
               onClick={() => setEstado("CONTACTADAS")}
             >
               CONTACTADAS
-            </button>
+            </button> */}
             <span className="ml-auto text-gray-500">
               {estado === "FAVORITAS"
                 ? `${filteredProperties.length} Propiedades favoritas`
