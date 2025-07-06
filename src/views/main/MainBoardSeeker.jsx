@@ -7,6 +7,7 @@ import CardComponent from "@/components/cardComponent";
 import Footer from "@/components/footer";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
+import { HashLoader } from "react-spinners";
 
 const MainBoardSeeker = () => {
   const { getProperties, getFavoriteProperties } = useProperty();
@@ -151,12 +152,11 @@ const MainBoardSeeker = () => {
 
   if (loading) {
     return (
-      <div>
-        <Navbar type={"seekerLog"} />
-        <div className="mt-16 mx-auto max-w-[1227px] text-center">
-          Cargando propiedades...
+      <div className="flex flex-col justify-center items-center mt-40">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">
+          Cargando Propiedades
         </div>
-        <Footer />
       </div>
     );
   }

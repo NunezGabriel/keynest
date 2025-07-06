@@ -10,7 +10,13 @@ import MainBoardSeeker from "@/views/main/MainBoardSeeker";
 const MainBoard = () => {
   const { user, loading } = useAuth();
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading)
+    return (
+      <>
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">Cargando</div>;
+      </>
+    );
 
   if (!user) return <MainBoardNoLogged />;
 

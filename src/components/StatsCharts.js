@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
+import { HashLoader } from "react-spinners";
 
 import {
   Chart as ChartJS,
@@ -178,7 +179,12 @@ const StatsCharts = () => {
 
   if (!landlordsData || !seekersData || !typeData || !weeklyData) {
     return (
-      <p className="text-center text-gray-500">Cargando estadísticas...</p>
+      <div className="flex flex-col justify-center items-center">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">
+          Cargando Estadisticas
+        </div>
+      </div>
     );
   }
 

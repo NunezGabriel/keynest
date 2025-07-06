@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import CardComponent from "@/components/cardComponent";
 import Footer from "@/components/footer";
 import { useProperty } from "@/context/PropertyContext";
+import { HashLoader } from "react-spinners";
 
 const MainBoardNoLogged = () => {
   const { getProperties } = useProperty();
@@ -131,12 +132,11 @@ const MainBoardNoLogged = () => {
 
   if (loading) {
     return (
-      <div>
-        <Navbar type={"noLogged"} />
-        <div className="mt-16 mx-auto max-w-[1227px] text-center">
-          Cargando propiedades...
+      <div className="flex flex-col justify-center items-center mt-40">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">
+          Cargando Propiedades
         </div>
-        <Footer />
       </div>
     );
   }

@@ -8,6 +8,7 @@ import EditUserModal from "@/components/modales/EditUserModal";
 import AddUserModal from "@/components/modales/AddUserModal";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
+import { HashLoader } from "react-spinners";
 
 const UserManagementView = () => {
   const { token, loading: authLoading, createUser } = useAuth(); // 👈🏼 usar register
@@ -54,7 +55,14 @@ const UserManagementView = () => {
   }, [authLoading, token]);
 
   if (authLoading) {
-    return <div className="p-10 text-center">Cargando...</div>;
+    return (
+      <div className="flex flex-col justify-center items-center mt-40">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">
+          Cargando Usuarios
+        </div>
+      </div>
+    );
   }
 
   return (

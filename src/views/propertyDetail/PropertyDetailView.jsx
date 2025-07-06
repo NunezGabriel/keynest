@@ -12,6 +12,7 @@ import ContactBoxLandlord from "@/components/propertyDetails/ContactBoxLandlord"
 import { useEffect, useState } from "react";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
+import { HashLoader } from "react-spinners";
 
 export default function PropertyDetailView({ id }) {
   const { getProperty } = useProperty();
@@ -40,15 +41,9 @@ export default function PropertyDetailView({ id }) {
 
   if (loading) {
     return (
-      <div className="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
-        {!user && <Navbar type="noLogged" />}
-        {user?.user_type === "seeker" && <Navbar type="seekerLog" />}
-        {user?.user_type === "landlord" && <Navbar type="landlordLog" />}
-        {user?.user_type === "admin" && <Navbar type="admin" />}
-        <main className="max-w-6xl mx-auto px-4 py-6 flex-grow flex items-center justify-center">
-          <p>Cargando propiedad...</p>
-        </main>
-        <Footer />
+      <div className="flex flex-col justify-center items-center mt-40">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">Cargando</div>
       </div>
     );
   }

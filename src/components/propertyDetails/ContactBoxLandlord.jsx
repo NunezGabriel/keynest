@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useProperty } from "@/context/PropertyContext";
+import { HashLoader } from "react-spinners";
 
 const ContactBoxLandlord = ({ propertyId }) => {
   const { user } = useAuth();
@@ -61,8 +62,11 @@ const ContactBoxLandlord = ({ propertyId }) => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-sm mx-auto">
-        <p>Cargando mensajes...</p>
+      <div className="flex flex-col justify-center items-center ">
+        <HashLoader color="#1290CB" size={50} />
+        <div className="text-center mt-20 text-[#1290CB]">
+          Cargando Mensjaes
+        </div>
       </div>
     );
   }

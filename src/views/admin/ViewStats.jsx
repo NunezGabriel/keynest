@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import StatsCharts from "@/components/StatsCharts";
+import { HashLoader } from "react-spinners";
 
 const ViewStatsView = () => {
   return (
