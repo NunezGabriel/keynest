@@ -1,9 +1,12 @@
+"use client";
 import Image from "next/image";
 import CardComponent from "@/components/cardComponent";
 import TeamSection from "@/components/dashboard/TeamSection";
 import UniversalButton from "@/components/buttons/UniversalButton";
+import { useAuth } from "@/context/AuthContext";
 
 const HomeLandlord = () => {
+  const { user } = useAuth();
   return (
     <div className="">
       <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14">
@@ -19,7 +22,7 @@ const HomeLandlord = () => {
 
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center gap-5">
           <h1 className="text-6xl mb-4 font-extralight text-[#484848]">
-            Conoce tu nuevo hogar
+            Conoce tu nuevo hogar {user?.name || "Vendedor"}
           </h1>
           <p className="text-xl mb-6 text-[#7c7c7c]">
             La forma más sencilla de encontrar donde perteneces
