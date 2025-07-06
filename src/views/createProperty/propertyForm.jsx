@@ -8,6 +8,7 @@ import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import AddressInput from "@/components/propertyForm/AddressInput";
+import { toast } from "react-toastify";
 
 const PropertyForm = () => {
   const { createProperty } = useProperty();
@@ -95,7 +96,7 @@ const PropertyForm = () => {
     try {
       // Validaciones básicas
       if (!formData.location || !formData.price) {
-        alert("Complete los campos requeridos");
+        toast.warn("Complete los campos requeridos");
         return;
       }
 
@@ -136,11 +137,11 @@ const PropertyForm = () => {
       // Enviar al backend
 
       console.log("Propiedad creada:", createdProperty);
-      alert(`Propiedad registrada exitosamente!`);
+      toast.success(`Propiedad registrada exitosamente!`);
       router.push("/my-properties"); // Redirigir después de crear
     } catch (error) {
       console.error("Error creando propiedad:", error);
-      alert(
+      toast.error(
         "Ocurrió un error al crear la propiedad. Por favor intente nuevamente."
       );
     } finally {

@@ -13,7 +13,7 @@ const CardProperties = ({ property, onDelete }) => {
         <span
           className={`px-3 py-1 rounded-lg ${
             property.status === "cerrada"
-              ? "bg-[#ffdbab] text-[#aa8000]"
+              ? "bg-[#ffb0b0] text-[#9c0000]"
               : "bg-[#C8F8CB] text-[#2A8622]"
           }`}
         >

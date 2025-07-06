@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import EditUserModal from "@/components/modales/EditUserModal";
 import AddUserModal from "@/components/modales/AddUserModal";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 
 const UserManagementView = () => {
   const { token, loading: authLoading, createUser } = useAuth(); // 👈🏼 usar register
@@ -40,8 +41,9 @@ const UserManagementView = () => {
     const created = await createUser(newUserData);
     if (created) {
       fetchUsers();
+      toast.success("Usuario creado correctamente");
     } else {
-      alert("Error al crear usuario");
+      toast.error("Error al crear usuario");
     }
   };
 
@@ -85,8 +87,9 @@ const UserManagementView = () => {
                 setFilteredUsers((prev) =>
                   prev.filter((u) => u.id !== user.id)
                 );
+                toast.success("Usuario eliminado correctamente");
               } else {
-                alert("Error al eliminar usuario");
+                toast.error("Error al eliminar usuario");
               }
             }}
             onUpdate={async (userId, updatedData) => {
@@ -112,7 +115,7 @@ const UserManagementView = () => {
                 );
                 setShowModal(false);
               } else {
-                alert("Error al actualizar el usuario");
+                toast.error("Error al actualizar el usuario");
               }
             }}
           />

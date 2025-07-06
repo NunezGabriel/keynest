@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useProperty } from "@/context/PropertyContext";
 import { RiSearchLine, RiMoneyDollarCircleLine } from "react-icons/ri";
 import AddressInput from "@/components/propertyForm/AddressInput";
+import { toast } from "react-toastify";
 
 const EditPropertyModal = ({ property, onClose, onSave }) => {
   const { updateProperty } = useProperty();
@@ -112,7 +113,7 @@ const EditPropertyModal = ({ property, onClose, onSave }) => {
       onClose();
     } catch (error) {
       console.error("Error al actualizar propiedad:", error);
-      alert("Ocurrió un error al actualizar la propiedad");
+      toast.error("Ocurrió un error al actualizar la propiedad");
     } finally {
       setIsSubmitting(false);
     }

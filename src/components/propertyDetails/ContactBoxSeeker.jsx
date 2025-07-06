@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useProperty } from "@/context/PropertyContext";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 
 const ContactBoxSeeker = ({ propertyId }) => {
   const { user } = useAuth();
@@ -91,10 +92,10 @@ const ContactBoxSeeker = ({ propertyId }) => {
     try {
       await sendMessage(propertyId, message);
       setMessage("");
-      alert("Mensaje enviado con éxito");
+      toast.success("Mensaje enviado con éxito");
     } catch (error) {
       console.error("Error enviando mensaje:", error);
-      alert("Error al enviar el mensaje");
+      toast.error("Error al enviar el mensaje");
     }
   };
 

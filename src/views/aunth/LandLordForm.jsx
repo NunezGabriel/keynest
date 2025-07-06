@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import UniversalButton from "@/components/buttons/UniversalButton";
+import { toast } from "react-toastify";
 
 const LandlordForm = () => {
   const { register } = useAuth();
@@ -21,7 +22,7 @@ const LandlordForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.password !== form.confirm) {
-      alert("Las contraseñas no coinciden");
+      toast.warn("Las contraseñas no coinciden");
       return;
     }
 

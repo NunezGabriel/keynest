@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import CardProperties from "@/components/cardsAdmin/cardProperties";
 import Footer from "@/components/footer";
 import { useProperty } from "@/context/PropertyContext";
+import { toast } from "react-toastify";
 
 const PropertyManagementView = () => {
   const { getProperties, deleteProperty } = useProperty();
@@ -32,8 +33,9 @@ const PropertyManagementView = () => {
       setFilteredProperties((prev) =>
         prev.filter((property) => property.property_id !== id)
       );
+      toast.success("Propiedad eliminada correctamente");
     } else {
-      alert("Error eliminando propiedad");
+      toast.error("Error eliminando propiedad");
     }
   };
 

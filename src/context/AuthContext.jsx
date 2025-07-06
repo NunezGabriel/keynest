@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
     if (!res.ok) {
       console.log("Error en respuesta:", res.status); // 👈🏼 DEBUG
-      alert("Credenciales incorrectas");
+      toast.error("Credenciales incorrectas");
       return;
     }
 
@@ -74,7 +75,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!res.ok) {
-      alert("Registro fallido");
+      toast.error("Registro fallido");
       return;
     }
 
@@ -178,6 +179,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         token,
         login,
         register,

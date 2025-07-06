@@ -1,9 +1,10 @@
 "use client";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const ProfileView = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, setUser } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,15 +40,14 @@ const ProfileView = () => {
       });
 
       if (updated) {
-        alert("Perfil actualizado correctamente");
+        toast.success("Perfil actualizado correctamente");
         localStorage.setItem("user", JSON.stringify(updated));
+        setUser(updated);
         setIsEditing(false);
-        // Refrescar el estado local
-        location.reload(); // o setUser(updated) si usas context
       }
     } catch (err) {
       console.error(err);
-      alert("Error al actualizar el perfil");
+      toast.error("Error al actualizar el perfil");
     }
   };
 
