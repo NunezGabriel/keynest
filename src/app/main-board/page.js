@@ -6,6 +6,7 @@ import AdminOptions from "@/views/admin/AdminOptions";
 import MainBoardLandlord from "@/views/main/MainBBoardLandlord";
 import MainBoardNoLogged from "@/views/main/MainBoardNoLogged";
 import MainBoardSeeker from "@/views/main/MainBoardSeeker";
+import { HashLoader } from "react-spinners";
 
 const MainBoard = () => {
   const { user, loading } = useAuth();

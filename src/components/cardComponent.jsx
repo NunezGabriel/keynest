@@ -40,6 +40,19 @@ const CardComponent = ({
     images = [],
   } = property || {};
   const [showEditModal, setShowEditModal] = useState(false);
+
+  console.log(property);
+
+  const backendURL = "http://localhost:8000";
+  const imagePath = images[0]?.image_url;
+  const firstImage = imagePath
+    ? imagePath.startsWith("http")
+      ? imagePath
+      : backendURL + imagePath
+    : "/images/house1.jpg";
+
+  console.log("➡️ Imagen que se está usando:", firstImage);
+
   return (
     <>
       <div className="overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
@@ -48,23 +61,24 @@ const CardComponent = ({
           className="w-[324px] rounded-xl bg-white mt-3 grid grid-rows-2 overflow-hidden"
         >
           <section className="relative h-48">
-            {" "}
-            {/* Añadido altura fija */}
-            <Image
-              alt="imagen de la propiedad"
-              src={images[0]?.url || "/image.png"} // Usa la primera imagen o una por defecto
-              layout="fill"
-              objectFit="cover"
-            />
+            <div className="absolute inset-0">
+              <img
+                src={firstImage}
+                alt="imagen de la propiedad"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
             {type === "liked" && (
-              <div className="absolute bg-[#ff2f3d] left-0 text-white tracking-wide px-6 py-1 rounded-br-xl gap-2 items-center flex">
+              <div className="absolute bg-[#ff2f3d] left-0 top-0 text-white tracking-wide px-6 py-1 rounded-br-xl gap-2 items-center flex">
                 <FaHeart size={27} color="white" />
               </div>
             )}
+
             <div
-              className={`absolute ${
+              className={`absolute top-0 right-0 ${
                 is_rent ? "bg-[#ffc107]" : "bg-[#22a069]"
-              } right-0 text-white tracking-wide text-[16px] px-2.5 py-1 rounded-bl-xl gap-2 items-center flex`}
+              } text-white tracking-wide text-[16px] px-2.5 py-1 rounded-bl-xl gap-2 items-center flex`}
             >
               <RiMoneyDollarCircleFill size={30} color="white" />
               <h1 className="text-[16px]">
