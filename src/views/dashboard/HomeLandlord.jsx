@@ -9,29 +9,27 @@ const HomeLandlord = () => {
   const { user } = useAuth();
   return (
     <div className="">
-      <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14">
+      <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14 h-[300px] sm:h-[500px] md:h-[600px]">
         <Image
           src="bigbackground.svg"
           alt="Descripción"
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-auto h-auto"
+          fill
+          className="object-cover"
           style={{ objectPosition: "center" }}
         />
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center gap-5">
-          <h1 className="text-6xl mb-4 font-extralight text-[#484848]">
-            Conoce tu nuevo hogar {user?.name || "Vendedor"}
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 gap-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extralight text-[#484848]">
+            Vende tu primer hogar {user?.name || "Comprador"}
           </h1>
-          <p className="text-xl mb-6 text-[#7c7c7c]">
-            La forma más sencilla de encontrar donde perteneces
+          <p className="text-base sm:text-lg md:text-xl text-[#7c7c7c]">
+            La forma más sencilla de encontrar compradores
           </p>
         </div>
       </div>
       <div className="text-center mb-14">
         <p className="text-lg text-[#373737] mb-4">
-          Encuentra de apartamento de tus sueños
+          mira y compara con la competencia
         </p>
         <h1 className="text-4xl text-[#1290CB] font-light tracking-[0.25px]">
           Casas en alquiler a los mejores precios

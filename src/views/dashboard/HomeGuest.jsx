@@ -6,26 +6,25 @@ import UniversalButton from "@/components/buttons/UniversalButton";
 const HomeGuest = () => {
   return (
     <div className="">
-      <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14">
+      <div className="relative flex justify-center items-center w-full overflow-hidden bg-white md:mb-14 h-[300px] sm:h-[500px] md:h-[600px]">
         <Image
           src="bigbackground.svg"
           alt="Descripción"
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-auto h-auto"
+          fill
+          className="object-cover"
           style={{ objectPosition: "center" }}
         />
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center gap-5">
-          <h1 className="text-6xl mb-4 font-extralight text-[#484848]">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 gap-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extralight text-[#484848]">
             Conoce tu nuevo hogar
           </h1>
-          <p className="text-xl mb-6 text-[#7c7c7c]">
+          <p className="text-base sm:text-lg md:text-xl text-[#7c7c7c]">
             La forma más sencilla de encontrar donde perteneces
           </p>
         </div>
       </div>
+
       <div className="text-center mb-14">
         <p className="text-lg text-[#373737] mb-4">
           Encuentra de apartamento de tus sueños
