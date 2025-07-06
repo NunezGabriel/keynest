@@ -146,7 +146,7 @@ const MainBoardNoLogged = () => {
       <Navbar type={"noLogged"} />
       <FillterComponent onFilter={applyFilters} />
 
-      <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-24 mb-24">
+      <section className="mx-auto max-w-[1227px] flex flex-wrap justify-center md:justify-between  gap-24 mb-24 ">
         {filteredProperties.length > 0 ? (
           filteredProperties.map((property) => (
             <CardComponent key={property.property_id} property={property} />
