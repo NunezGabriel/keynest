@@ -13,10 +13,10 @@ const MainBoard = () => {
 
   if (loading)
     return (
-      <>
+      <div className="flex flex-col justify-center items-center mt-40">
         <HashLoader color="#1290CB" size={50} />
-        <div className="text-center mt-20 text-[#1290CB]">Cargando</div>;
-      </>
+        <div className="text-center mt-20 text-[#1290CB]">Cargando</div>
+      </div>
     );
 
   if (!user) return <MainBoardNoLogged />;
