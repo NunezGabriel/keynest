@@ -89,8 +89,8 @@ const SaveProperties = () => {
     <div>
       <Navbar type={"seekerLog"} />
       <div className="mt-16 mx-auto max-w-[1227px]">
-        <div className="mt-8">
-          <div className="flex gap-4 mb-6 pb-2">
+        <div className="mt-8 px-4">
+          <div className="flex gap-4 mb-6 pb-2 items-center">
             <button
               className={`px-4 py-2 font-bold ${
                 estado === "FAVORITAS"
@@ -119,7 +119,7 @@ const SaveProperties = () => {
           </div>
         </div>
 
-        <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-24 mb-24 mt-16">
+        <section className="mx-auto max-w-[1227px] flex flex-wrap justify-center md:justify-between gap-24 mb-24 mt-16">
           {filteredProperties.length > 0 ? (
             filteredProperties.map((property) => (
               <CardComponent

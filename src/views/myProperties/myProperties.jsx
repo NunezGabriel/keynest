@@ -84,15 +84,15 @@ const MyProperties = () => {
   return (
     <div>
       <Navbar type={"landlordLog"} />
-      <div className="mt-16 mx-auto max-w-[1227px]">
+      <div className="mt-16 mx-auto max-w-[1227px] p-4">
         <UniversalButton
           iconClassName=""
           text={"REGISTRAR NUEVA PROPIEDAD"}
           href={"/my-properties/create-propertie"}
         />
 
-        <div className="mt-8">
-          <div className="flex gap-4 mb-6 pb-2">
+        <div className="mt-8 p-4">
+          <div className="flex flex-col md:flex-row gap-4 mb-6 pb-2 items-center">
             <button
               className={`px-4 py-2 font-bold ${
                 estado === "disponible"
@@ -113,13 +113,13 @@ const MyProperties = () => {
             >
               CERRADAS
             </button>
-            <span className="ml-auto text-gray-500">
+            <span className="md:ml-auto text-gray-500">
               {filteredProperties.length} Propiedades encontradas
             </span>
           </div>
         </div>
 
-        <section className="mx-auto max-w-[1227px] flex flex-wrap justify-between gap-24 mb-24 mt-16">
+        <section className="mx-auto max-w-[1227px] flex flex-wrap justify-center md:justify-between gap-24 mb-24 mt-16">
           {filteredProperties.length > 0 ? (
             filteredProperties.map((property) => (
               <CardComponent
