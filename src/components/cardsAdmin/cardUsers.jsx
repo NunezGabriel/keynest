@@ -13,7 +13,7 @@ const CardUsers = ({ user, onDelete, onUpdate }) => {
 
   return (
     <>
-      <div className="bg-white rounded-md p-6 w-full md:min-w-[520px] gap-6 flex flex-col overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+      <div className="bg-white rounded-md p-6 w-full max-w-[520px] gap-6 flex flex-col overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
         <div className="flex justify-between items-center">
           <FaUserAlt size={100} className="text-black" />
           <h1 className="max-w-[200px] text-2xl">{user.name}</h1>

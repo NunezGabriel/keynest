@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔁 Recuperar datos del localStorage
+  // Recuperar datos del localStorage
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     const savedUser = localStorage.getItem("user");
@@ -23,9 +23,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // 🔐 Login
+  // Login
   const login = async ({ email, password }) => {
-    console.log("Enviando credenciales:", { email, password }); // 👈🏼 DEBUG
+    console.log("Enviando credenciales:", { email, password });
 
     const res = await fetch("http://localhost:8000/api/login", {
       method: "POST",
@@ -36,13 +36,13 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!res.ok) {
-      console.log("Error en respuesta:", res.status); // 👈🏼 DEBUG
+      console.log("Error en respuesta:", res.status);
       toast.error("Credenciales incorrectas");
       return;
     }
 
     const data = await res.json();
-    console.log("Respuesta del backend:", data); // 👈🏼 DEBUG
+    console.log("Respuesta del backend:", data);
 
     setToken(data.access_token);
     setUser(data.user);
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     redirectToDashboard(data.user.user_type);
   };
 
-  // 📝 Register
+  // Register
 
   const register = async ({
     name,
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
         password_confirmation,
-        user_type: role, // Laravel espera "user_type"
+        user_type: role,
       }),
     });
 
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
     redirectToDashboard(data.user.user_type);
   };
 
-  // 🔓 Logout
+  // Logout
   const logout = async () => {
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
@@ -104,13 +104,13 @@ export const AuthProvider = ({ children }) => {
     router.push("/");
   };
 
-  // 🧭 Redirige según tipo de usuario
+  // Redirige según tipo de usuario
   const redirectToDashboard = (role) => {
     console.log("Redirigiendo a dashboard para el rol:", role); // opcional
     router.push("/");
   };
 
-  // ✅ Proteger rutas: función auxiliar
+  // Proteger rutas: función auxiliar
   const fetchWithToken = async (url, options = {}) => {
     const res = await fetch(url, {
       ...options,
@@ -127,7 +127,6 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
-  // Dentro del AuthProvider, antes del return
   const getUsers = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/users");
     if (!res.ok) return [];

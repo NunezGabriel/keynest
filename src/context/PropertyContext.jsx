@@ -6,7 +6,7 @@ const PropertyContext = createContext();
 export const PropertyProvider = ({ children }) => {
   const { fetchWithToken, user } = useAuth();
 
-  // 🏠 Obtener todas las propiedades
+  // Obtener todas las propiedades
   const getProperties = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/properties");
     return await res.json();
@@ -19,7 +19,7 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // 🔍 Obtener una propiedad por ID (versión final)
+  // Obtener una propiedad por ID
   const getProperty = async (id) => {
     try {
       const res = await fetch(
@@ -33,7 +33,7 @@ export const PropertyProvider = ({ children }) => {
     }
   };
 
-  // ➕ Crear propiedad (solo para landlords)
+  // Crear propiedad (solo para landlords)
   const createProperty = async (propertyData) => {
     const res = await fetchWithToken("http://localhost:8000/api/properties", {
       method: "POST",
@@ -45,7 +45,7 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // ✏️ Actualizar propiedad
+  // Actualizar propiedad
   const updateProperty = async (id, propertyData) => {
     const res = await fetchWithToken(
       `http://localhost:8000/api/properties/${id}`,
@@ -60,7 +60,7 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // 🗑️ Eliminar propiedad
+  // Eliminar propiedad
   const deleteProperty = async (id) => {
     const res = await fetchWithToken(
       `http://localhost:8000/api/properties/${id}`,
@@ -93,19 +93,19 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // ⭐❤️ Nueva función para admins  - todas las favoritas
+  // Nueva función para admins  - todas las favoritas
   const getAllFavorites = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/favorites/all");
     return await res.json();
   };
 
-  // ❤️ Obtener propiedades favoritas por usuario
+  // Obtener propiedades favoritas por usuario
   const getFavoriteProperties = async () => {
     const res = await fetchWithToken("http://localhost:8000/api/favorites");
     return await res.json();
   };
 
-  // ❤️ Dar like a una propiedad
+  // Dar like a una propiedad
   const addFavorite = async (propertyId) => {
     const res = await fetchWithToken("http://localhost:8000/api/favorites", {
       method: "POST",
@@ -117,7 +117,7 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // ❤️ Quitar like a una propiedad
+  // Quitar like a una propiedad
   const removeFavorite = async (favoriteId) => {
     const res = await fetchWithToken(
       `http://localhost:8000/api/favorites/${favoriteId}`,
@@ -128,14 +128,13 @@ export const PropertyProvider = ({ children }) => {
     return await res.json();
   };
 
-  // ❤️ Verificar si una propiedad es favorita
-  // En tu PropertyContext.js
+  // Verificar si una propiedad es favorita
   const isPropertyFavorite = async (propertyId) => {
     if (!user) return { isFavorite: false, id: null };
 
     try {
       const favorites = await getFavoriteProperties();
-      console.log("Favoritos recibidos:", favorites); // Para debug
+      console.log("Favoritos recibidos:", favorites);
 
       const favorite = favorites.find(
         (fav) =>
@@ -145,7 +144,7 @@ export const PropertyProvider = ({ children }) => {
 
       return {
         isFavorite: !!favorite,
-        id: favorite?.favorite_id || null, // Asegúrate que esto coincida con tu respuesta
+        id: favorite?.favorite_id || null,
       };
     } catch (error) {
       console.error("Error verificando favorito:", error);
@@ -173,7 +172,7 @@ export const PropertyProvider = ({ children }) => {
     }
 
     const data = await res.json();
-    console.log("Mensajes recibidos:", data); // Para debug
+    console.log("Mensajes recibidos:", data);
     return data;
   };
 
@@ -197,13 +196,11 @@ export const PropertyProvider = ({ children }) => {
         deleteProperty,
         closeProperty,
         reopenProperty,
-        // Funciones de favoritos
         getFavoriteProperties,
         addFavorite,
         removeFavorite,
         isPropertyFavorite,
         getAllFavorites,
-        // Enviar y obtener mensajes
         sendMessage,
         getMessages,
         deleteMessage,

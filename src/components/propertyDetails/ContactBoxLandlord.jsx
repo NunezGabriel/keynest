@@ -102,7 +102,7 @@ const ContactBoxLandlord = ({ propertyId }) => {
                 </div>
                 <button
                   onClick={() => handleDelete(msg.id)}
-                  className="text-red-500 text-xs hover:text-red-700"
+                  className="text-white bg-red-500 text-sm rounded-xl py-1 px-2"
                   title="Eliminar mensaje"
                 >
                   Eliminar
